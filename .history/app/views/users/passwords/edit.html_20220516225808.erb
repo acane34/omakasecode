@@ -1,0 +1,62 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="container">
+    <div class="card-container">
+      <div class="card-body">
+          <h3 class="card-title text-center mb-4 mt-1">新規登録</h3>
+          <hr>
+          <form>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                    </svg> 
+                  </span>
+                </div>   
+                <%=
+                  f.password_field :password,
+                  class: "form-control #{"is-invalid" if resource.errors.messages[:password].present? }",
+                  autofocus: "true",
+                  autocomplete: "new-password",
+                  placeholder: "新しいパスワード"
+                %>  
+                <% if resource.errors.messages[:password].present? %>
+                <span class="samazon-error-message">
+                  <strong><%= resource.errors.full_messages_for(:password).first %></strong>
+                </span>
+                <% end %>      
+              </div> 
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock" viewBox="0 0 16 16">
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                    </svg> 
+                  </span>
+                </div>   
+                <%=
+                  f.password_field :password_confirmation,
+                  class: "form-control",
+                  autocomplete: "new-password",
+                  placeholder: "新しいパスワード（確認用）"
+                %>        
+              </div> 
+            </div> 
+
+            <div class="form-group">
+              <%= f.submit "パスワードリセット", class: "btn btn-outline-secondary btn-block" %>
+            </div>   
+          
+          </form>
+      </div>
+    </div>
+  </div>
+
+<% end %>
