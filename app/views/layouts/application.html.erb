@@ -12,11 +12,20 @@
 
   <body>
     <%= render partial: 'layouts/header' %>
-    <main class="py-4 mb-5">
-      <% if notice %><p class="alert alert-warning"><%= notice %></div><% end %>
-      <% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
-      <%= yield %>
-    </main>
+    <% if notice %><p class="alert alert-warning"><%= notice %></div><% end %>
+    <% if alert %><p class="alert alert-danger"><%= alert %></p><% end %>
+    <div class="row">
+    <% if user_signed_in? %>
+      <div class="col-3">
+        <%=render partial: 'layouts/sidebar' %>
+      </div>
+    <% end %>
+      <div class="col">
+        <main class="py-4 mb-5">
+          <%= yield %>
+        </main>
+      </div>
+    </div>
     <%= render partial: 'layouts/footer' %>
   </body>
 </html>
