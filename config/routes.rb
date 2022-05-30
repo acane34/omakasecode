@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     get "verify", :to => "users/registrations#verify"
     get "login", :to => "users/sessions#new"
     delete "logout", :to => "users/sessions#destroy"
+
+    get "week", :to => "home#week"
+    get "home", :to => "home#index"
   end
 
   resource :users, only: [:edit, :update] do

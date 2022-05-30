@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2022_05_30_164245) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
-    t.string "area", null: false
     t.integer "gender"
     t.integer "age"
     t.string "email", default: "", null: false
