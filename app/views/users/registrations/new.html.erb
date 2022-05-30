@@ -64,20 +64,21 @@
                     <i class="fa-solid fa-earth-asia"></i>
                   </span>
                 </div>
-                <%= 
-                f.text_field :area, 
-                class: "form-control", 
-                placeholder: "居住地", 
-                type: "name"
-                 %>
+                <%= f.label :place_id, "", class: "col-md-5 col-form-label text-md-left" do %>
 
-                 <% if resource.errors.messages[:area].present? %>
+                  <div class="prefecture-select">
+                    <%= f.collection_select(:place_id, @places, :id, :prefecture, {prompt: true}) %>
+                  </div>
+                <% end %>
+
+                 <% if resource.errors.messages[:place_id].present? %>
                   <span class="">
-                    <strong><%= resource.errors.full_messages_for(:area).first %></strong>
+                    <strong><%= resource.errors.full_messages_for(:place_id).first %></strong>
                   </span>
                 <% end %>
               </div> 
             </div>
+
 
             <div class="form-group">
               <div class="input-group">

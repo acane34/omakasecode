@@ -10,6 +10,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
+    @places = Place.all
     super
   end
 
@@ -31,6 +32,6 @@ class Users::SessionsController < Devise::SessionsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_in_params
-    devise_parameter_sanitizer.permit(:sign_in,keys: [:username, :email, :password, :password_confirmation, :area, :age, :gender])
+    devise_parameter_sanitizer.permit(:sign_in,keys: [:username, :email, :password, :password_confirmation, :age, :gender, :place_id])
   end
 end
