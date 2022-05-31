@@ -23,9 +23,11 @@ Rails.application.routes.draw do
     collection do
       get "mypage", :to => "users#edit"
       put "mypage", :to => "users#update"
+      patch 'mypage/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     end
   end
   get "home" => "home#index"
+  
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
