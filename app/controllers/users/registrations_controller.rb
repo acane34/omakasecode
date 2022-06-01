@@ -3,16 +3,15 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  before_action :get_place, only: [:new, :create, :update]
 
   # GET /resource/sign_up
   def new
-    @places = Place.all
     super
   end
 
   # POST /resource
   def create
-    @places = Place.all
     super
   end
 
@@ -23,7 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    @places = Place.all
     super
   end
 
@@ -64,5 +62,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
     verify_path
+  end
+
+  def get_place
+    @places = Place.all
   end
 end

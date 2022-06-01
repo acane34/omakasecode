@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def update
     @user.update_without_password(user_params)
+    flash[:notice] = "ユーザーの情報が更新されました"
     redirect_to mypage_users_url
   end
 

@@ -48,7 +48,10 @@ class Users::SessionsController < Devise::SessionsController
       else
         flash[:notice] = "項目を入力してください"
       end
-    end
+    else
+      flash[:error] = "ユーザーが存在しません"
+      redirect_to root_path
+    end    
   end
 
 end

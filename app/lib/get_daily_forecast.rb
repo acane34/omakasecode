@@ -2,7 +2,7 @@ require 'faraday'
 
 class GetDailyForecast
   def self.get_daily_forecast(lat,lon)
-    res = Faraday.get("https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&APPID=5beca3555f713ec7c45828b27c299a8e&lon=#{lon}&exclude=current,minutely,hourly,alerts")
+    res = Faraday.get("https://api.openweathermap.org/data/2.5/onecall?lat=#{lat}&APPID=ENV["OPEN_WEATHER_API_KEY"]&lon=#{lon}&exclude=current,minutely,hourly,alerts")
     res_body = JSON.parse(res.body)
     forecasts = res_body["daily"]
     result = []
@@ -20,7 +20,6 @@ class GetDailyForecast
       daily_result["icon"] = forecast["weather"][0]["icon"]+".png"
       result.push(daily_result)
     end
-    puts result
     return result
   end
 end
