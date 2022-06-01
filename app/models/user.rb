@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable
 
   belongs_to :place  
-  extend SwitchFlg
 
   def active_for_authentication?
     super && (deleted_flg == false)
