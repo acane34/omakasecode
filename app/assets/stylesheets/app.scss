@@ -46,3 +46,10 @@ h3, .h3 {
   box-shadow:  0 10px 25px 0 rgba(7, 8, 8, 0.5);
 }
 
+.side{
+  float:left;
+}
+
+.side_right {
+  border-left: double 4px rgba(7, 8, 8, 0.5);
+}

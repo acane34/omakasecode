@@ -1,0 +1,58 @@
+// v（純色）、b,p（明清色）、dp,dkg（暗清色）、sf,d(中間色)の7種類に変更
+// 1:v, 2:b, 3:dp, 4:sf, 5:d, 6:p, 7:dkg　の対応関係
+
+.v5{
+  background-color:#99CF15;
+}
+.c-v5{
+  fill:#99CF15;
+  color:#99CF15;
+}
+
+.b5{
+  background-color: #99D02B;
+}
+.c-b5{
+  fill: #99D02B;
+  color: #99D02B;
+}
+
+.dp5{
+  background-color:#518517;
+}
+.c-dp5{
+  fill:#518517;
+  color:#518517;
+}
+
+.sf5{
+  background-color:#B3B140;
+}
+.c-sf5{
+  fill:#B3B140;
+  color:#B3B140;
+}
+
+.d5{
+  background-color:#747E47;
+}
+.c-d5{
+  fill:#747E47;
+  color:#747E47;
+}
+
+.p5{
+  background-color:#E6F5B0;
+}
+.c-p5{
+  fill:#E6F5B0;
+  color:#E6F5B0;
+}
+
+.dkg5{
+  background-color:#3E3F31;
+}
+.c-dkg5{
+  fill:#3E3F31;
+  color:#3E3F31;
+}

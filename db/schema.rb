@@ -10,7 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_31_023819) do
+ActiveRecord::Schema.define(version: 2022_06_07_023827) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "outfits", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.boolean "always", null: false
+    t.boolean "spring", null: false
+    t.boolean "summer", null: false
+    t.boolean "autum", null: false
+    t.boolean "winter", null: false
+    t.string "major_color", null: false
+    t.string "sub_color", null: false
+    t.string "tone", null: false
+    t.boolean "volumey_flg"
+    t.datetime "purchase_data"
+    t.integer "category_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image"
+    t.index ["category_id"], name: "index_outfits_on_category_id"
+    t.index ["user_id"], name: "index_outfits_on_user_id"
+  end
 
   create_table "places", force: :cascade do |t|
     t.string "prefecture"
