@@ -63,13 +63,21 @@ div.sub-item {
   color: transparent;
 }
 
-.radio-inline__input:focus + .radio-inline__label {
-  outline-color: goldenrod;
+.radio-inline__input:checked + .radio-inline__label {
+  outline-color: #62625f;
   outline-offset: -2px;
-  outline-style: inset;
-  outline-width: 3px;
+  outline-style: solid;
+  outline-width: 4px;
+  margin: 2px;
 }
 
+.stand-out{
+  outline-color: #62625f;
+  outline-offset: -2px;
+  outline-style: solid;
+  outline-width: 4px;
+  margin: 2px;
+}
 
 .category-group{
   display:flex;

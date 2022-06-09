@@ -1,32 +1,58 @@
 <div class="container">
-  <div class="ml-33">
-  <br>
-    <div class="d-flex flex-column m-1">
+  <div class="m-44">
+    <div class="d-flex flex-column mt-3">
       <%= link_to home_path, class:"no-underline" do %>
+        <i class="fa-solid fa-calendar-day"></i>
+        <br>
         今日のおすすめコーデ
       <% end %>
     </div>
-    <div class="d-flex flex-column m-1">
+    <div class="d-flex flex-column mt-2">
       <%= link_to week_path, class:"no-underline" do %>
+        <i class="fa-solid fa-calendar-week"></i>
+        <br>
         明日以降のおすすめ
       <% end %>
     </div>
-    <div class="d-flex flex-column m-1">
+    <div class="d-flex flex-column mt-2">
       <%= link_to outfits_path, class:"no-underline" do %>
+        <i class="fa-solid fa-person-booth"></i>
+        <br>
         クローゼット
       <% end %>
     </div>
-    <div class="d-flex flex-column m-1">
+    <div class="d-flex flex-column mt-2">
+      <%= link_to root_path, class:"no-underline" do %>
+      <i class="fa-solid fa-clock-rotate-left"></i>
+      <br>
         履歴
+      <% end %>
     </div>
-    <div class="d-flex flex-column m-1">
-        予定
+    <div class="d-flex flex-column mt-2">
+      <%= link_to root_path, class:"no-underline" do %>
+        <i class="fa-solid fa-calendar-days"></i>
+        <br>
+          予定
+      <% end %>
     </div>
-    <div class="d-flex flex-column m-1">
-        最近着ていない服
+    <div class="d-flex flex-column mt-2">
+      <%= link_to root_path, class:"no-underline" do %>
+        <i class="fa-solid fa-heart"></i>
+        <br>
+          お気に入り
+      <% end %>
     </div>
-    <div class="d-flex flex-column m-1">
+    <div class="d-flex flex-column mt-2">
+      <%= link_to root_path, class:"no-underline" do %>
+        <i class="fa-solid fa-heart-crack"></i>
+        <br>
+          最近着ていない服
+      <% end %>
+    </div>
+    <div class="d-flex flex-column mt-2">
       <%= link_to mypage_users_path, class:"no-underline" do %>
+        <i class="fa-solid fa-user-check"></i>
+        <br>
         マイページ
       <% end %>        
     </div>

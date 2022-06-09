@@ -1,170 +1,214 @@
 <script>
-$(function(){
-  var item_num = $('div.item').length;
-  var deg = 360.0/item_num;
-  var red = (deg*Math.PI/180.0);
-  var circle_r = $("div.item").width() * 2.5;
-  $('div.item').each(function(i, elem) {
-      var x = Math.cos(red * i) * circle_r + circle_r;
-      var y = Math.sin(red * i) * circle_r + circle_r;
-      $(elem).css('left', x);
-      $(elem).css('top', y);
+  // maincolorにおいて、円状に表示
+  $(function(){
+    var item_num = $('div.item').length;
+    var deg = 360.0/item_num;
+    var red = (deg*Math.PI/180.0);
+    var circle_r = $("div.item").width() * 2.5;
+    $('div.item').each(function(i, elem) {
+        var x = Math.cos(red * i) * circle_r + circle_r;
+        var y = Math.sin(red * i) * circle_r + circle_r;
+        $(elem).css('left', x);
+        $(elem).css('top', y);
+    });
   });
-});
 
-$(function(){
-  var item_num = $('div.sub-item').length;
-  var deg = 360.0/item_num;
-  var red = (deg*Math.PI/180.0);
-  var circle_r = $("div.sub-item").width() * 2.5;
-  $('div.sub-item').each(function(i, elem) {
-      var x = Math.cos(red * i) * circle_r + circle_r;
-      var y = Math.sin(red * i) * circle_r + circle_r;
-      $(elem).css('left', x);
-      $(elem).css('top', y);
+  // subcolorにおいて、円状に表示
+  $(function(){
+    var item_num = $('div.sub-item').length;
+    var deg = 360.0/item_num;
+    var red = (deg*Math.PI/180.0);
+    var circle_r = $("div.sub-item").width() * 2.5;
+    $('div.sub-item').each(function(i, elem) {
+        var x = Math.cos(red * i) * circle_r + circle_r;
+        var y = Math.sin(red * i) * circle_r + circle_r;
+        $(elem).css('left', x);
+        $(elem).css('top', y);
+    });
   });
-});
 
-$(function () {
-  // ラジオボタンを選択変更したら実行
-  $('input[name="outfit[major_color]"]').change(function () {
+  // チェックを変えると、その枠の色が移動
+  $(function(){
+    let main = document.getElementsByClassName('main-check');
+    let su = document.getElementsByClassName('sub-check');
+    
+    let maincheck = $('input[name="outfit[major_color]"]:checked');
+    let subcheck = $('input[name="outfit[sub_color]"]:checked');
 
-      // value値取得
-      var val = $(this).val();
-      var v = "v"+val;
-      var b = "b"+val;
-      var dp = "dp"+val;
-      var sf = "sf"+val;
-      var d = "d"+val;
-      var p = "p"+val;
-      var dkg = "dkg"+val;
+    let mainchecklabel = $('.main-check.btn'+maincheck.val()).get();
+    mainchecklabel[0].classList.add("stand-out");
 
-      $("#tone-group").empty();
+    let subchecklabel = $('.sub-check.btn'+subcheck.val()).get();
+    subchecklabel[0].classList.add("stand-out");
 
-      // 新しいbuttonを作りたい
-      if(val!=13 && val!=0){
-      $('#tone-group').append(`<label class="form-control col-3">トーン</label><div class="tone"><input id="v" type="radio" class="radio-inline__input" value="v" name="outfit[tone]" /><label for="v" class="btn ${v} radio-inline__label">1</label></div><div class="tone"><input id="b" type="radio" class="radio-inline__input" value="b" name="outfit[tone]" /><label for="b" class="btn ${b} radio-inline__label">2</label></div><div class="tone"><input id="dp" type="radio" class="radio-inline__input" value="dp" name="outfit[tone]" /><label for="dp" class="btn ${dp} radio-inline__label">3</label></div><div class="tone"><input id="sf" type="radio" class="radio-inline__input" value="sf" name="outfit[tone]" /><label for="sf" class="btn ${sf} radio-inline__label">4</label></div><div class="tone"><input id="d" type="radio" class="radio-inline__input" value="d" name="outfit[tone]" /><label for="d" class="btn ${d} radio-inline__label">5</label></div><div class="tone"><input id="p" type="radio" class="radio-inline__input" value="p" name="outfit[tone]" /><label for="p" class="btn ${p} radio-inline__label">6</label></div><div class="tone"><input id="dkg" type="radio" class="radio-inline__input" value="dkg" name="outfit[tone]" /><label for="dkg" class="btn ${dkg} radio-inline__label">7</label></div>`);}
-      else{
-      $('#tone-group').append(`<label class="form-control col-3">トーン</label><div class="tone"><input id="w" type="radio" class="radio-inline__input" value="w" name="outfit[tone]" /><label for="w" class="btn w radio-inline__label">1</label></div><div class="tone"><input id="ltGy" type="radio" class="radio-inline__input" value="ltGy" name="outfit[tone]" /><label for="ltGy" class="btn ltGy radio-inline__label">2</label></div><div class="tone"><input id="dkGy" type="radio" class="radio-inline__input" value="dkGy" name="outfit[tone]" /><label for="dkGy" class="btn dkGy radio-inline__label">3</label></div><div class="tone"><input id="Bk" type="radio" class="radio-inline__input" value="Bk" name="outfit[tone]" /><label for="Bk" class="btn Bk radio-inline__label">4</label></div>`);}
-  });
-});
-
-$(function (){
-  var categories = document.getElementsByClassName("category-radio-input");
-
-  for (let i=0;i<categories.length;i++){
-    if('<%= @outfit.category_id %>'==categories[i].value){
-      categories[i].click();
-    }
-  }
-  
-  var tones = document.getElementsByClassName("radio-inline__label");
-
-  for (let i=0;i<tones.length;i++){
-    console.log(tones[i].htmlFor);
-    if('<%= @outfit.tone %>'==tones[i].htmlFor){
-      tones[i].click();
-    }
-  }
-
-});
-
-$(function () {
-  //「全て選択」のチェックボックス
-  let checkAll = document.getElementById("checkAll");
-  let all = document.getElementById("always")
-  //「全て選択」以外のチェックボックス
-  let el = document.getElementsByClassName("checks");
-
-  let spring = document.getElementById("spring");
-  let sp = document.getElementById("sp");
-  let summer = document.getElementById("summer");
-  let su = document.getElementById("su");
-  let autum = document.getElementById("autum");
-  let au = document.getElementById("au");
-  let winter = document.getElementById("winter");
-  let wi = document.getElementById("wi");
-
-
-  //全てにチェックを付ける・外す
-  const funcCheckAll = () => {
-      if(all.checked){
-        spring.checked = false;
-        summer.checked = false;
-        autum.checked = false;
-        winter.checked = false;
-      }else{
-        spring.checked = true;
-        summer.checked = true;
-        autum.checked = true;
-        winter.checked = true;
+    $('input[name="outfit[major_color]"]').change(function(){
+      for(let i=0;i<main.length;i++){
+        main[i].classList.remove("stand-out");
       }
 
-  };
+      let nextmaincheck = $(this);
+      let nextmainchecklabel = $('.main-check.btn'+nextmaincheck.val()).get();
+      nextmainchecklabel[0].classList.add("stand-out");
 
-  //「checks」のclassを持つ要素のチェック状態で「全て選択」のチェックをON/OFFする
-  const funcCheck = (e) => {
-    let count = 0;
+    });
 
-    if(spring.checked && sp==e.currentTarget){}
-    else
-      if(spring.checked || sp==e.currentTarget){
-      count ++;
+    $('input[name="outfit[sub_color]"]').change(function(){
+      for(let i=0;i<su.length;i++){
+        su[i].classList.remove("stand-out");
+      }
+
+      let nextsubcheck = $(this);
+      let nextsubchecklabel = $('.sub-check.btn'+nextsubcheck.val()).get();
+      nextsubchecklabel[0].classList.add("stand-out");
+
+    });
+
+  });
+
+  // メインカラー選ぶとトーンが出てきます
+  $(function () {
+    // ラジオボタンを選択変更したら実行
+    $('input[name="outfit[major_color]"]').change(function () {
+      
+
+        // value値取得
+        var val = $(this).val();
+        var v = "v"+val;
+        var b = "b"+val;
+        var dp = "dp"+val;
+        var sf = "sf"+val;
+        var d = "d"+val;
+        var p = "p"+val;
+        var dkg = "dkg"+val;
+
+        $("#tone-group").empty();
+
+        // 新しいbuttonを作りたい
+        if(val!=13 && val!=0){
+        $('#tone-group').append(`<label class="form-control col-3">トーン</label><div class="tone"><input id="v" type="radio" class="radio-inline__input" value="v" name="outfit[tone]" /><label for="v" class="btn ${v} radio-inline__label">1</label></div><div class="tone"><input id="b" type="radio" class="radio-inline__input" value="b" name="outfit[tone]" /><label for="b" class="btn ${b} radio-inline__label">2</label></div><div class="tone"><input id="dp" type="radio" class="radio-inline__input" value="dp" name="outfit[tone]" /><label for="dp" class="btn ${dp} radio-inline__label">3</label></div><div class="tone"><input id="sf" type="radio" class="radio-inline__input" value="sf" name="outfit[tone]" /><label for="sf" class="btn ${sf} radio-inline__label">4</label></div><div class="tone"><input id="d" type="radio" class="radio-inline__input" value="d" name="outfit[tone]" /><label for="d" class="btn ${d} radio-inline__label">5</label></div><div class="tone"><input id="p" type="radio" class="radio-inline__input" value="p" name="outfit[tone]" /><label for="p" class="btn ${p} radio-inline__label">6</label></div><div class="tone"><input id="dkg" type="radio" class="radio-inline__input" value="dkg" name="outfit[tone]" /><label for="dkg" class="btn ${dkg} radio-inline__label">7</label></div>`);}
+        else{
+        $('#tone-group').append(`<label class="form-control col-3">トーン</label><div class="tone"><input id="w" type="radio" class="radio-inline__input" value="w" name="outfit[tone]" /><label for="w" class="btn w radio-inline__label">1</label></div><div class="tone"><input id="ltGy" type="radio" class="radio-inline__input" value="ltGy" name="outfit[tone]" /><label for="ltGy" class="btn ltGy radio-inline__label">2</label></div><div class="tone"><input id="dkGy" type="radio" class="radio-inline__input" value="dkGy" name="outfit[tone]" /><label for="dkGy" class="btn dkGy radio-inline__label">3</label></div><div class="tone"><input id="Bk" type="radio" class="radio-inline__input" value="Bk" name="outfit[tone]" /><label for="Bk" class="btn Bk radio-inline__label">4</label></div>`);}
+    });
+  });
+
+  // カテゴリー選ぶとデザイン変更
+  $(function (){
+    var categories = document.getElementsByClassName("category-radio-input");
+
+    for (let i=0;i<categories.length;i++){
+      if('<%= @outfit.category_id %>'==categories[i].value){
+        categories[i].click();
+      }
     }
-    if(summer.checked && su==e.currentTarget){}
-    else 
-      if(summer.checked || su==e.currentTarget){
+    
+    var tones = document.getElementsByClassName("radio-inline__label");
+
+    for (let i=0;i<tones.length;i++){
+      console.log(tones[i].htmlFor);
+      if('<%= @outfit.tone %>'==tones[i].htmlFor){
+        tones[i].click();
+      }
+    }
+
+  });
+
+  // 季節のチェックボックス
+  $(function () {
+    //「全て選択」のチェックボックス
+    let checkAll = document.getElementById("checkAll");
+    let all = document.getElementById("always")
+    //「全て選択」以外のチェックボックス
+    let el = document.getElementsByClassName("checks");
+
+    let spring = document.getElementById("spring");
+    let sp = document.getElementById("sp");
+    let summer = document.getElementById("summer");
+    let su = document.getElementById("su");
+    let autum = document.getElementById("autum");
+    let au = document.getElementById("au");
+    let winter = document.getElementById("winter");
+    let wi = document.getElementById("wi");
+
+
+    //全てにチェックを付ける・外す
+    const funcCheckAll = () => {
+        if(all.checked){
+          spring.checked = false;
+          summer.checked = false;
+          autum.checked = false;
+          winter.checked = false;
+        }else{
+          spring.checked = true;
+          summer.checked = true;
+          autum.checked = true;
+          winter.checked = true;
+        }
+
+    };
+
+    //「checks」のclassを持つ要素のチェック状態で「全て選択」のチェックをON/OFFする
+    const funcCheck = (e) => {
+      let count = 0;
+
+      if(spring.checked && sp==e.currentTarget){}
+      else
+        if(spring.checked || sp==e.currentTarget){
         count ++;
       }
-    if(autum.checked && au==e.currentTarget){}
-    else
-      if(autum.checked || au==e.currentTarget){
-      count ++;
-    }
-    if(winter.checked && wi==e.currentTarget){}
-    else
-      if(winter.checked || wi==e.currentTarget){
-      count ++;
-    }
+      if(summer.checked && su==e.currentTarget){}
+      else 
+        if(summer.checked || su==e.currentTarget){
+          count ++;
+        }
+      if(autum.checked && au==e.currentTarget){}
+      else
+        if(autum.checked || au==e.currentTarget){
+        count ++;
+      }
+      if(winter.checked && wi==e.currentTarget){}
+      else
+        if(winter.checked || wi==e.currentTarget){
+        count ++;
+      }
 
-    if (count == 4) {
-        all.checked = true;
-    } else {
-        all.checked = false;
-    }
-  };
+      if (count == 4) {
+          all.checked = true;
+      } else {
+          all.checked = false;
+      }
+    };
 
-  //「全て選択」のチェックボックスをクリックした時
-  checkAll.addEventListener(
-      "click",
-      () => {
-        
-        funcCheckAll(checkAll.checked);
-        
-      },false
-  );
+    //「全て選択」のチェックボックスをクリックした時
+    checkAll.addEventListener(
+        "click",
+        () => {
+          
+          funcCheckAll(checkAll.checked);
+          
+        },false
+    );
 
-  //「全て選択」以外のチェックボックスをクリックした時
-  for (let i = 0; i < el.length; i++) {
-      el[i].addEventListener("click", funcCheck, false);
-  };
-    
-});
+    //「全て選択」以外のチェックボックスをクリックした時
+    for (let i = 0; i < el.length; i++) {
+        el[i].addEventListener("click", funcCheck, false);
+    };
+      
+  });
 </script>
 
 <div class="container px-4 m-4">
   <div class="row">
+    <%= link_to outfits_path do %>
+      <p class="btn btn-outline-success">一覧に戻る</p>
+    <% end %>
+    <%= link_to outfit_path(@outfit), method: :delete, data: { confirm: '削除してよろしいですか?' } do  %>
+      <p class="btn btn-outline-danger ml-2">このアイテムを削除</p>
+    <% end %>
 
     <%= form_with model: @outfit do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
 
       <div class="mb-3">
-        <%= link_to outfits_path do %>
-          <p class="m-3 text-right">戻る</p>
-        <% end %>
-        <%= link_to outfit_path(@outfit), method: :delete, data: { confirm: '削除してよろしいですか?' } do  %>
-          <p class="m-3 text-right">削除</p>
-        <% end %>
         <label class="form-control col-3">カテゴリー</label>
         <div class="category-group">
           <% @categories.each do |category| %>
@@ -235,7 +279,7 @@ $(function () {
             <% i=0 %>
             <%= while i<14 do %>
               <div class="item">
-                <%= f.label :major_color, '・', for:"#{i}",  class: "btn btn#{i} maru" %>
+                <%= f.label :major_color, '・', for:"#{i}",  class: "btn btn#{i} maru main-check" %>
                 <%= f.radio_button :major_color, :"#{i}",id:"#{i}",  class: "major-input radio-inline__input form-control" %>
               <% i+=1 %>
               </div>
@@ -270,13 +314,22 @@ $(function () {
             <% i=0 %>
             <%= while i<14 do %>
               <div class="sub-item">
-                <%= f.label :sub_color, '・', for:"sub#{i}",  class: "btn btn#{i} maru" %>
+                <%= f.label :sub_color, '・', for:"sub#{i}",  class: "btn btn#{i} maru sub-check" %>
                 <%= f.radio_button :sub_color, :"#{i}",id:"sub#{i}",  class: "radio-inline__input form-control" %>
               <% i+=1 %>
               </div>
             <% end %>
           </section>
         </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="mb-3">
+          <label class="form-control col-3">写真</label>
+        </dvi>
+        <%= image_tag @outfit.image.to_s, class:"image-size" %>
+        <p>写真は一つしか登録できません。<br>写真を新しく登録する際は、ファイルを選択してください。</p>
+        <%= f.file_field :image %>
       </div>
 
       <%= f.submit "Update" %>

@@ -1,4 +1,5 @@
 <script>
+  // 円状に配置
   $(function(){
       var item_num = $('div.item').length;
       var deg = 360.0/item_num;
@@ -12,6 +13,7 @@
       });
   });
 
+  // 円状に配置
   $(function(){
       var item_num = $('div.sub-item').length;
       var deg = 360.0/item_num;
@@ -25,12 +27,39 @@
       });
   });
 
+  // チェックを変えると、その枠の色が移動
+  $(function(){
+    let main = document.getElementsByClassName('main-check');
+    let su = document.getElementsByClassName('sub-check');
 
+    $('input[name="outfit[major_color]"]').change(function(){
+      for(let i=0;i<main.length;i++){
+        main[i].classList.remove("stand-out");
+      }
 
+      let nextmaincheck = $(this);
+      let nextmainchecklabel = $('.main-check.btn'+nextmaincheck.val()).get();
+      nextmainchecklabel[0].classList.add("stand-out");
+
+    });
+
+    $('input[name="outfit[sub_color]"]').change(function(){
+      for(let i=0;i<su.length;i++){
+        su[i].classList.remove("stand-out");
+      }
+
+      let nextsubcheck = $(this);
+      let nextsubchecklabel = $('.sub-check.btn'+nextsubcheck.val()).get();
+      nextsubchecklabel[0].classList.add("stand-out");
+
+    });
+
+  });
+
+  // トーンの出現
   $(function () {
     // ラジオボタンを選択変更したら実行
     $('input[name="outfit[major_color]"]').change(function () {
-      console.log("あ")
         
         // value値取得
         var val = $(this).val();
@@ -53,6 +82,7 @@
     });
   });
 
+  // 季節チェックボックス
   $(function () {
     //「全て選択」のチェックボックス
     let checkAll = document.getElementById("checkAll");
@@ -137,16 +167,18 @@
  
 </script>
 
-<div class="container px-4 m-4">
+<div class="container px-4 m-2">
   <div class="row">
     <%= form_with model: @outfit do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
 
-      <div class="mb-3">
+      <div class="text-right">
         <%= link_to outfits_path do %>
-          <p class="m-3 text-right">一覧へ</p>
+          <p class="m-3 text-right btn btn-outline-success">一覧へ</p>
         <% end %>
+      </div>
       
+      <div class="mb-3">
         <label class="form-control col-3">カテゴリー</label>
         <div class="category-group">
           <% @categories.each do |category| %>
@@ -217,7 +249,7 @@
             <% i=0 %>
             <%= while i<14 do %>
               <div class="item">
-                <%= f.label :major_color, '・', for:"#{i}",  class: "btn btn#{i} maru" %>
+                <%= f.label :major_color, '・', for:"#{i}",  class: "btn btn#{i} maru main-check" %>
                 <%= f.radio_button :major_color, :"#{i}",id:"#{i}",  class: "radio-inline__input form-control" %>
               <% i+=1 %>
               </div>
@@ -236,7 +268,7 @@
             <% i=0 %>
             <%= while i<14 do %>
               <div class="sub-item">
-                <%= f.label :sub_color, '・', for:"sub#{i}",  class: "btn btn#{i} maru" %>
+                <%= f.label :sub_color, '・', for:"sub#{i}",  class: "btn btn#{i} maru sub-check" %>
                 <%= f.radio_button :sub_color, :"#{i}",id:"sub#{i}",  class: "radio-inline__input form-control" %>
               <% i+=1 %>
               </div>

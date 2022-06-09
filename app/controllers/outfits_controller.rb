@@ -15,6 +15,7 @@ class OutfitsController < ApplicationController
 
   def create
     @outfit = Outfit.create!(outfit_params)
+    flash[:notice] = "アイテムを登録しました"
     redirect_to outfit_url @outfit
   end
 
@@ -26,12 +27,14 @@ class OutfitsController < ApplicationController
   def update
     @outfit = Outfit.find(params[:id])
     @outfit.update!(outfit_params)
+    flash[:notice] = "アイテムを編集しました"
     redirect_to outfit_url @outfit
   end
 
   def destroy
     @outfit = Outfit.find(params[:id])
     @outfit.destroy
+    flash[:notice] = "アイテムを削除しました"
     redirect_to outfits_url
   end
 

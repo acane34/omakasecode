@@ -20,7 +20,7 @@
           <td><%= weather["temp_defference"] %></td>
           <td><%= image_tag "/images/#{weather["icon"]}" %></td>
           <td>
-            <a>おすすめコーデを見る</a>
+            <%= link_to "おすすめコーデを見る", week_path, class:"btn btn-outline-secondary btn-sm" %>
           </td>
         </tr>
       <% end %>

@@ -33,7 +33,7 @@
                       placeholder: "ユーザーネームを入力"
                       %>
 
-                      <%= f.submit "保存", class: "btn" %>
+                      <%= f.submit "保存", class: "btn btn-primary btn-sm ml-2" %>
 
 
                       <% if @user.errors.messages[:username].present? %>
@@ -45,7 +45,7 @@
                   </div>
                 </div>
 
-                <span onclick="switchEditUserInfo('.userUsername','.editUserUsername','.userUsernameEditLabel')"; class="userUsernameEditLabel center">
+                <span onclick="switchEditUserInfo('.userUsername','.editUserUsername','.userUsernameEditLabel')"; class="userUsernameEditLabel center btn btn-secondary btn-sm">
                   編集
                 </span>
 
@@ -78,7 +78,7 @@
                       placeholder: "メールアドレスを入力"
                       %>
 
-                      <%= f.submit "保存", class: "btn" %>
+                      <%= f.submit "保存", class: "btn btn-primary btn-sm ml-2" %>
 
 
                       <% if @user.errors.messages[:email].present? %>
@@ -90,7 +90,7 @@
                   </div>
                 </div>
                 
-                <span onclick="switchEditUserInfo('.userEmail','.editUserEmail','.userEmailEditLabel')"; class="userEmailEditLabel center">
+                <span onclick="switchEditUserInfo('.userEmail','.editUserEmail','.userEmailEditLabel')"; class="userEmailEditLabel center btn btn-secondary btn-sm">
                   編集
                 </span>
 
@@ -116,7 +116,7 @@
                     </div>
 
 
-                    <%= f.submit "保存", class: "btn" %>
+                    <%= f.submit "保存", class: "btn btn-primary btn-sm ml-2" %>
 
 
                     <% if @user.errors.messages[:place_id].present? %>
@@ -128,7 +128,7 @@
                   </div>
                 </div>
 
-                <span onclick="switchEditUserInfo('.userPlace','.editUserPlace','.userPlaceEditLabel')"; class="userPlaceEditLabel center">
+                <span onclick="switchEditUserInfo('.userPlace','.editUserPlace','.userPlaceEditLabel')"; class="userPlaceEditLabel center btn btn-secondary btn-sm">
                   編集
                 </span>
 

@@ -24,7 +24,11 @@ $(function(){
 });
 </script>
 
-<div class="m-5">
+<div class="m-3">
+  <%= link_to new_outfit_path do %>
+    <p class="mt-3 text-left btn btn-outline-success">新しく登録する</p>
+  <% end %>
+
   <div class="index-container"> 
     <% @outfits.each do |outfit| %>
       <%= link_to outfit_path(outfit), class:"card-link nonline" do %>
@@ -111,8 +115,8 @@ $(function(){
                 </div>
 
                 <div class="mt-3 edit-link">
-                  <%= link_to "編集", edit_outfit_path(outfit), class:"card-link" %>
-                  <%= link_to 'Delete', outfit_path(outfit), method: :delete, data: { confirm: '削除してよろしいですか?' }  %>
+                  <%= link_to "編集", edit_outfit_path(outfit), class:"card-link m-3" %>
+                  <%= link_to '削除', outfit_path(outfit), method: :delete, data: { confirm: '削除してよろしいですか?' }  %>
                 </div>
 
               </div>
@@ -121,5 +125,4 @@ $(function(){
     <% end %>
   </div>
 
-  <%= link_to "New", new_outfit_path %>
 </div>
