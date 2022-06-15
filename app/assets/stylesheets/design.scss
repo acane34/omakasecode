@@ -168,3 +168,118 @@ div.sub-item {
 .season-check:checked + .season-label {
   background-color: #ab576c;
 }
+
+.weather-icon{
+  width:90%;
+  height:90%;
+}
+
+.no-underline{
+  text-decoration:none !important;
+  color: black;
+}
+
+.index-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.outfit-item{
+  background-color: #eeebe7;
+}
+.hid{
+  display:none;
+}
+.nonline{
+  text-decoration: none;
+  color: black;
+}
+
+.always-text{
+  color: darkslategrey;
+}
+
+.spring-el{
+  color:pink;
+}
+
+.summer-el{
+  color: rgb(104, 176, 215);
+}
+
+.autum-el{
+  color: rgb(112, 29, 29);
+}
+
+.winter-el{
+  color: blue;
+}
+
+.season-icons{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.interval{
+  height: 20px;
+}
+
+.edit-link{
+  position: absolute;
+  bottom:5px;
+}
+
+.image-size{
+  width: 90%;
+  height: auto;
+}
+
+.prefecture-select {
+  overflow: hidden;
+  width: 90%;
+  margin: 2px auto;
+  text-align: center;
+}
+.prefecture-select select {
+  width: 100%;
+  padding-right: 1em;
+  cursor: pointer;
+  text-indent: 10px;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.prefecture-select select::-ms-expand {
+    display: none;
+}
+.prefecture-select {
+  position: relative;
+  border: 2px solid #ced4da;
+  background: #ffffff;
+}
+.prefecture-select::before {
+  position: absolute;
+  top: 1em;
+  right: 0.8em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(97, 65, 11, 0.392);
+  pointer-events: none;
+}
+.prefecture-select select {
+  padding: 8px 38px 8px 8px;
+  color: black;
+}
+
+.center{
+  display: flex;
+  align-items: center;
+}

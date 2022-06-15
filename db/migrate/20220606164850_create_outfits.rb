@@ -13,6 +13,7 @@ class CreateOutfits < ActiveRecord::Migration[5.2]
       t.string :tone, null: false
       t.boolean :volumey_flg
       t.datetime :purchase_data
+      t.string :image
       t.references :category, foreign_key: true
       t.references :user, foreign_key: true
 

@@ -1,3 +1,142 @@
+<div class="container px-4 m-4">
+  <div class="row">
+    <%= link_to outfits_path do %>
+      <p class="btn btn-outline-success">一覧に戻る</p>
+    <% end %>
+    <%= link_to outfit_path(@outfit), method: :delete, data: { confirm: '削除してよろしいですか?' } do  %>
+      <p class="btn btn-outline-danger ml-2">このアイテムを削除</p>
+    <% end %>
+
+    <%= form_with model: @outfit do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <div class="mb-3">
+        <label class="form-control col-3">カテゴリー</label>
+        <div class="category-group">
+          <% @categories.each do |category| %>
+              <input  name="outfit[category_id]" value=<%= category.id %> id=category<%= category.id %> type="radio" class="category-radio-input"  />
+              <label for=category<%= category.id %> class="category-radio-label">
+                <%= category.name %>
+                <% if category.id ==1 %>
+                  <%= render 'icons/tops' %>
+                <% elsif category.id ==2 %>
+                  <%= render 'icons/pants' %>
+                <% elsif category.id ==3 %>
+                  <%= render 'icons/skirt' %>
+                <% elsif category.id ==4 %>
+                  <%= render 'icons/onepiece' %>
+                <% elsif category.id ==5 %>
+                  <%= render 'icons/outer' %>
+                <% elsif category.id ==6 %>
+                  <%= render 'icons/shoes' %>
+                <% elsif category.id ==7 %>
+                  <%= render 'icons/item' %>
+                <% elsif category.id ==8 %>
+                  <%= render 'icons/bag' %>
+                <% elsif category.id ==9 %>
+                  <%= render 'icons/accessories' %>
+                <% end %>
+              </label>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :name, '名前', class:"form-control col-3" %>
+        <%= f.text_field :name,  class:"form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :description, '説明',  class:"form-control col-3" %>
+        <%= f.text_area :description,  class:"form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :seasons, '季節' , class:"form-control col-3" %>
+        <div id="season"  class="season-group">
+          <%= f.check_box :always, { id: "always", class: "season-check"}, "true", "false" %>
+          <%= f.label "一年中", for:"always", id:"checkAll", class: "season-label" %>
+
+          <%= f.check_box :spring, { id: "spring", class: "season-check season-checks"}, "true", "false" %>
+          <%= f.label "春", for:"spring", id:"sp", class: "season-label checks" %>
+
+          <%= f.check_box :summer, { id: "summer", class: "season-check season-checks"}, "true", "false" %>
+          <%= f.label "夏", for:"summer", id:"su", class: "season-label checks" %>
+
+          <%= f.check_box :autum, { id: "autum", class: "season-check season-checks"}, "true", "false" %>
+          <%= f.label "秋", for:"autum", id:"au" ,class: "season-label checks" %>
+
+          <%= f.check_box :winter, { id: "winter", class: "season-check season-checks"}, "true", "false" %>
+          <%= f.label "冬", for:"winter", id:"wi",class: "season-label checks" %>  
+          
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-control col-3">メインカラー</label>
+        <div id="color-group">
+          <section class="circle">
+            <% i=0 %>
+            <%= while i<14 do %>
+              <div class="item">
+                <%= f.label :major_color, '・', for:"#{i}",  class: "btn btn#{i} maru main-check" %>
+                <%= f.radio_button :major_color, :"#{i}",id:"#{i}",  class: "major-input radio-inline__input form-control" %>
+              <% i+=1 %>
+              </div>
+            <% end %>
+          </section>
+        </div>
+      </div>
+
+      <div id="tone-group" class="tone-margin mb-3">
+        <label class="form-control col-3">トーン</label>
+
+        <% if @outfit.major_color==0 || @outfit.major_color==13 %>
+          <div class="tone"><input id="w" type="radio" class="radio-inline__input" value="w" name="outfit[tone]" /><label for="w" class="btn w radio-inline__label">1</label></div>
+          <div class="tone"><input id="ltGy" type="radio" class="radio-inline__input" value="ltGy" name="outfit[tone]" /><label for="ltGy" class="btn ltGy radio-inline__label">2</label></div>
+          <div class="tone"><input id="dkGy" type="radio" class="radio-inline__input" value="dkGy" name="outfit[tone]" /><label for="dkGy" class="btn dkGy radio-inline__label">3</label></div>
+          <div class="tone"><input id="Bk" type="radio" class="radio-inline__input" value="Bk" name="outfit[tone]" /><label for="Bk" class="btn Bk radio-inline__label">4</label></div>
+        <% else %>
+          <div class="tone"><input id="v" type="radio" class="radio-inline__input" value="v" name="outfit[tone]" /><label for="v" class="btn v<%= @outfit.major_color %> radio-inline__label">1</label></div>
+          <div class="tone"><input id="b" type="radio" class="radio-inline__input" value="b" name="outfit[tone]" /><label for="b" class="btn b<%= @outfit.major_color %> radio-inline__label">2</label></div>          
+          <div class="tone"><input id="dp" type="radio" class="radio-inline__input" value="dp" name="outfit[tone]" /><label for="dp" class="btn dp<%= @outfit.major_color %> radio-inline__label">3</label></div>
+          <div class="tone"><input id="sf" type="radio" class="radio-inline__input" value="sf" name="outfit[tone]" /><label for="sf" class="btn sf<%= @outfit.major_color %> radio-inline__label">4</label></div>          
+          <div class="tone"><input id="d" type="radio" class="radio-inline__input" value="d" name="outfit[tone]" /><label for="d" class="btn d<%= @outfit.major_color %> radio-inline__label">5</label></div>          
+          <div class="tone"><input id="p" type="radio" class="radio-inline__input" value="p" name="outfit[tone]" /><label for="p" class="btn p<%= @outfit.major_color %> radio-inline__label">6</label></div>          
+          <div class="tone"><input id="dkg" type="radio" class="radio-inline__input" value="dkg" name="outfit[tone]" /><label for="dkg" class="btn dkg<%= @outfit.major_color %> radio-inline__label">7</label></div>
+        <% end %>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-control col-3">サブカラー</label>
+        <div id="color-group" class ="sub-margin">
+          <section class="circle">
+            <% i=0 %>
+            <%= while i<14 do %>
+              <div class="sub-item">
+                <%= f.label :sub_color, '・', for:"sub#{i}",  class: "btn btn#{i} maru sub-check" %>
+                <%= f.radio_button :sub_color, :"#{i}",id:"sub#{i}",  class: "radio-inline__input form-control" %>
+              <% i+=1 %>
+              </div>
+            <% end %>
+          </section>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="mb-3">
+          <label class="form-control col-3">写真</label>
+        </dvi>
+        <%= image_tag @outfit.image.to_s, class:"image-size" %>
+        <p>写真は一つしか登録できません。<br>写真を新しく登録する際は、ファイルを選択してください。</p>
+        <%= f.file_field :image %>
+      </div>
+
+      <%= f.submit "Update" %>
+    <% end %>
+  </div>
+</div>
+
 <script>
   // maincolorにおいて、円状に表示
   $(function(){
@@ -195,144 +334,3 @@
       
   });
 </script>
-
-<div class="container px-4 m-4">
-  <div class="row">
-    <%= link_to outfits_path do %>
-      <p class="btn btn-outline-success">一覧に戻る</p>
-    <% end %>
-    <%= link_to outfit_path(@outfit), method: :delete, data: { confirm: '削除してよろしいですか?' } do  %>
-      <p class="btn btn-outline-danger ml-2">このアイテムを削除</p>
-    <% end %>
-
-    <%= form_with model: @outfit do |f| %>
-      <%= f.hidden_field :user_id, :value => current_user.id %>
-
-      <div class="mb-3">
-        <label class="form-control col-3">カテゴリー</label>
-        <div class="category-group">
-          <% @categories.each do |category| %>
-            <div class="">
-              <input  name="outfit[category_id]" value=<%= category.id %> id=category<%= category.id %> type="radio" class="category-radio-input"  />
-              <label for=category<%= category.id %> class="category-radio-label">
-                <%= category.name %>
-                <% if category.id ==1 %>
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M18 24h-12v-12l-3 10.357-3-.773 4-17.584 3.782-2.002c-.417 1.998.72 4.432 1.516 6.158.804-.703 1.301-1.157 2.7-2.252 1.394 1.093 1.822 1.485 2.7 2.251.83-1.796 1.935-4.186 1.518-6.158l3.784 2.003 4 17.584-3 .731-2.882-10.315-.118 12zm-6-3c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm0-3c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm0-3.001c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm0-2.998c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm0-3.001c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm-2.425-2.15c-2.099-4.546-1.049-6.858 2.422-6.846 2.888 0 4.823 1.646 2.422 6.846-.877-.766-2.162-1.76-2.422-1.959-.029-.023-2.389 1.93-2.422 1.959zm2.438-2.226c1.396-.419 3.992-3.633-.013-3.624-4.009.009-1.39 3.228-.003 3.629l.016-.005z"/></svg>
-                <% elsif category.id ==2 %>
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M10 24h-4v-17.61c.604-.093 1.22-.315 1.779-.753.804-.628 1.352-1.627 1.564-2.837h5.321c.212 1.21.76 2.209 1.564 2.837.557.436 1.17.658 1.772.752v17.611h-4l-1.968-15-2.032 15zm-4-21.2h2.529c-.192.951-.626 1.724-1.243 2.207-.364.286-.794.476-1.286.569v-2.776zm9.479 0h2.521v2.775c-.489-.094-.916-.283-1.279-.568-.617-.483-1.05-1.256-1.242-2.207zm2.521-.8h-12v-2h12v2zm-6-1.5c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5z"/></svg>
-                <% elsif category.id ==3 %>
-                  <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M18.1,4.8C18,4.3 17.6,4 17.1,4H13L13.2,7H10.8L11,4H6.8C6.3,4 5.9,4.4 5.8,4.8L3.1,18.8C3,19.4 3.5,20 4.1,20H10L10.3,15H13.7L14,20H19.8C20.4,20 20.9,19.4 20.8,18.8L18.1,4.8M10.4,13L10.6,9H13.2L13.4,13H10.4Z" /></svg>
-                <% elsif category.id ==4 %>
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M15.968 11l6.032 11.463s-2.112.804-5.554 1.249l-1.446-3.712.432 3.828c-1.062.105-2.228.172-3.479.172-1.219 0-2.352-.063-3.385-.164l.432-3.836-1.45 3.721c-3.458-.443-5.55-1.258-5.55-1.258l6.128-11.463h7.84zm-7.823-1l-1.162-4.09-2.44.794-1.543-2.429 5-4.275s2.039 1 4 1c1.961 0 3.978-1 3.978-1l5.022 4.275-1.543 2.429-2.44-.794-1.076 4.09h-7.796zm.362-8.709s1.497.709 3.493.709c1.996 0 3.546-.707 3.546-.707s-1.028 2.707-3.546 2.707-3.493-2.709-3.493-2.709z"/></svg>
-                <% elsif category.id ==5 %>
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11.6 24h-5.619l.019-10-2.983 8.721-3.017-.721 3.981-16 4-1.727c-.888-.944-1.355-2.337 0-3.242 0 0 1.432-1.018 4.019-1.027 2.587-.01 3.981.997 3.981.997 1.326.843.896 2.468 0 3.27l4 1.729 4.019 16-3 .73-3-8.73-.019 10h-5.581v-21.496c1.467-.05 2.6-.366 2.6-.748 0-.417-1.344-.755-3-.755s-3 .338-3 .755c0 .382 1.133.698 2.6.748v21.496zm3.545-7.021l-.645.469 2.355 3.234.645-.469-2.355-3.234zm-6.29 0l.645.469-2.355 3.234-.645-.469 2.355-3.234z"/></svg>
-                <% elsif category.id ==6 %>
-                  <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M2 15C2 15 2 12 4 12C4.68 12 5.46 11.95 6.28 11.82C7.2 12.54 8.5 13 10 13H10.25L8.56 11.29C8.91 11.18 9.25 11.05 9.59 10.91L11.5 12.82C11.89 12.74 12.25 12.63 12.58 12.5L10.55 10.45C10.85 10.28 11.14 10.11 11.43 9.91L13.5 12C13.8 11.79 14.04 11.56 14.25 11.32L12.22 9.29C12.46 9.07 12.7 8.83 12.92 8.58L14.79 10.45C14.91 10.14 15 9.83 15 9.5C15 8.65 14.55 7.89 13.84 7.28C13.89 7.19 13.95 7.1 14 7L15.53 6.23C16.38 7.17 18.14 7.84 20.25 7.97L20.3 8H21C21 8 22 9 22 12.5C22 13.07 22 13.57 21.96 14H19C17.9 14 16.58 14.26 15.3 14.5C14.12 14.76 12.9 15 12 15H2M21 17C21 17 21.58 17 21.86 15H19C17 15 14 16 12 16H2.28C2.62 16.6 3.26 17 4 17H21Z" /></svg>
-                <% elsif category.id ==7 %>
-                  <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M19.11,11.92C19.13,11.71 19.14,11.5 19.14,11.29C19.14,7.86 17.71,4.14 16.28,4.14C14.85,4.14 13.42,5.57 12,5.57C10.57,5.57 9.14,4.14 7.71,4.14C6.28,4.14 4.86,7.79 4.86,11.29C4.86,11.5 4.86,11.71 4.88,11.92C7.22,12.45 9.6,12.72 12,12.71C14.45,12.71 16.83,12.44 19.11,11.92M3.45,18.18C9,19.85 14.96,19.86 20.54,18.18C20.96,18.04 21.33,17.77 21.59,17.41C21.85,17.05 22,16.61 22,16.17C22,15.72 21.86,15.29 21.61,14.92C21.35,14.56 21,14.29 20.56,14.14C17.86,15 15,15.45 12,15.45C9,15.45 6.13,15 3.43,14.14C3,14.29 2.65,14.57 2.39,14.93C2.14,15.29 2,15.72 2,16.17C2,17.11 2.61,17.9 3.45,18.18V18.18Z" /></svg>
-                <% elsif category.id==8 %>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12.23 15.5c-6.801 0-10.367-1.221-12.23-2.597v9.097h24v-8.949c-3.218 2.221-9.422 2.449-11.77 2.449zm1.77 2.532c0 1.087-.896 1.968-2 1.968s-2-.881-2-1.968v-1.032h4v1.032zm-14-8.541v-2.491h24v2.605c0 5.289-24 5.133-24-.114zm9-7.491c-1.104 0-2 .896-2 2v2h2v-1.5c0-.276.224-.5.5-.5h5c.276 0 .5.224.5.5v1.5h2v-2c0-1.104-.896-2-2-2h-6z"/></svg>
-                <% elsif category.id ==9 %>
-                  <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M21.5 5H19.5C19.5 9.14 16.14 12.5 12 12.5C7.86 12.5 4.5 9.14 4.5 5H2.5C2.55 10.11 6.59 14.29 11.7 14.5C11.1 15.4 10 17.2 10 18C10 20.67 14 20.67 14 18C14 17.2 12.9 15.4 12.3 14.5C17.41 14.29 21.45 10.11 21.5 5Z" /></svg>
-                <% end %>
-              </label>
-            </div>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <%= f.label :name, '名前', class:"form-control col-3" %>
-        <%= f.text_field :name,  class:"form-control" %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.label :description, '説明',  class:"form-control col-3" %>
-        <%= f.text_area :description,  class:"form-control" %>
-      </div>
-
-      <div class="mb-3">
-        <%= f.label :seasons, '季節' , class:"form-control col-3" %>
-        <div id="season"  class="season-group">
-          <%= f.check_box :always, { id: "always", class: "season-check"}, "true", "false" %>
-          <%= f.label "一年中", for:"always", id:"checkAll", class: "season-label" %>
-
-          <%= f.check_box :spring, { id: "spring", class: "season-check season-checks"}, "true", "false" %>
-          <%= f.label "春", for:"spring", id:"sp", class: "season-label checks" %>
-
-          <%= f.check_box :summer, { id: "summer", class: "season-check season-checks"}, "true", "false" %>
-          <%= f.label "夏", for:"summer", id:"su", class: "season-label checks" %>
-
-          <%= f.check_box :autum, { id: "autum", class: "season-check season-checks"}, "true", "false" %>
-          <%= f.label "秋", for:"autum", id:"au" ,class: "season-label checks" %>
-
-          <%= f.check_box :winter, { id: "winter", class: "season-check season-checks"}, "true", "false" %>
-          <%= f.label "冬", for:"winter", id:"wi",class: "season-label checks" %>  
-          
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-control col-3">メインカラー</label>
-        <div id="color-group">
-          <section class="circle">
-            <% i=0 %>
-            <%= while i<14 do %>
-              <div class="item">
-                <%= f.label :major_color, '・', for:"#{i}",  class: "btn btn#{i} maru main-check" %>
-                <%= f.radio_button :major_color, :"#{i}",id:"#{i}",  class: "major-input radio-inline__input form-control" %>
-              <% i+=1 %>
-              </div>
-            <% end %>
-          </section>
-        </div>
-      </div>
-
-      <div id="tone-group" class="tone-margin mb-3">
-        <label class="form-control col-3">トーン</label>
-
-        <% if @outfit.major_color==0 || @outfit.major_color==13 %>
-          <div class="tone"><input id="w" type="radio" class="radio-inline__input" value="w" name="outfit[tone]" /><label for="w" class="btn w radio-inline__label">1</label></div>
-          <div class="tone"><input id="ltGy" type="radio" class="radio-inline__input" value="ltGy" name="outfit[tone]" /><label for="ltGy" class="btn ltGy radio-inline__label">2</label></div>
-          <div class="tone"><input id="dkGy" type="radio" class="radio-inline__input" value="dkGy" name="outfit[tone]" /><label for="dkGy" class="btn dkGy radio-inline__label">3</label></div>
-          <div class="tone"><input id="Bk" type="radio" class="radio-inline__input" value="Bk" name="outfit[tone]" /><label for="Bk" class="btn Bk radio-inline__label">4</label></div>
-        <% else %>
-          <div class="tone"><input id="v" type="radio" class="radio-inline__input" value="v" name="outfit[tone]" /><label for="v" class="btn v<%= @outfit.major_color %> radio-inline__label">1</label></div>
-          <div class="tone"><input id="b" type="radio" class="radio-inline__input" value="b" name="outfit[tone]" /><label for="b" class="btn b<%= @outfit.major_color %> radio-inline__label">2</label></div>          
-          <div class="tone"><input id="dp" type="radio" class="radio-inline__input" value="dp" name="outfit[tone]" /><label for="dp" class="btn dp<%= @outfit.major_color %> radio-inline__label">3</label></div>
-          <div class="tone"><input id="sf" type="radio" class="radio-inline__input" value="sf" name="outfit[tone]" /><label for="sf" class="btn sf<%= @outfit.major_color %> radio-inline__label">4</label></div>          
-          <div class="tone"><input id="d" type="radio" class="radio-inline__input" value="d" name="outfit[tone]" /><label for="d" class="btn d<%= @outfit.major_color %> radio-inline__label">5</label></div>          
-          <div class="tone"><input id="p" type="radio" class="radio-inline__input" value="p" name="outfit[tone]" /><label for="p" class="btn p<%= @outfit.major_color %> radio-inline__label">6</label></div>          
-          <div class="tone"><input id="dkg" type="radio" class="radio-inline__input" value="dkg" name="outfit[tone]" /><label for="dkg" class="btn dkg<%= @outfit.major_color %> radio-inline__label">7</label></div>
-        <% end %>
-      </div>
-
-      <div class="mb-3">
-        <label class="form-control col-3">サブカラー</label>
-        <div id="color-group" class ="sub-margin">
-          <section class="circle">
-            <% i=0 %>
-            <%= while i<14 do %>
-              <div class="sub-item">
-                <%= f.label :sub_color, '・', for:"sub#{i}",  class: "btn btn#{i} maru sub-check" %>
-                <%= f.radio_button :sub_color, :"#{i}",id:"sub#{i}",  class: "radio-inline__input form-control" %>
-              <% i+=1 %>
-              </div>
-            <% end %>
-          </section>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <div class="mb-3">
-          <label class="form-control col-3">写真</label>
-        </dvi>
-        <%= image_tag @outfit.image.to_s, class:"image-size" %>
-        <p>写真は一つしか登録できません。<br>写真を新しく登録する際は、ファイルを選択してください。</p>
-        <%= f.file_field :image %>
-      </div>
-
-      <%= f.submit "Update" %>
-    <% end %>
-  </div>
-</div>

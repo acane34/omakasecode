@@ -18,7 +18,7 @@
           <th scope="row"><%= weather["date"].month %>/<%= weather["date"].day %></th>
           <td><%= weather["f_temp"] %></td>
           <td><%= weather["temp_defference"] %></td>
-          <td><%= image_tag "/images/#{weather["icon"]}" %></td>
+          <td><%= image_tag "/weather_icons/#{weather["icon"]}" %></td>
           <td>
             <%= link_to "おすすめコーデを見る", week_path, class:"btn btn-outline-secondary btn-sm" %>
           </td>

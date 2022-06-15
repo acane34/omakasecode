@@ -4,7 +4,7 @@ class OutfitsController < ApplicationController
   end
 
   def show
-    @outfit = Outfit.find(params[:id])
+    @outfit = Outfit.find_by(id: params[:id])
     @categories = Category.all
   end
 
@@ -20,22 +20,30 @@ class OutfitsController < ApplicationController
   end
 
   def edit
-    @outfit = Outfit.find(params[:id])
+    @outfit = Outfit.find_by(id: params[:id])
     @categories = Category.all
   end
 
   def update
     @outfit = Outfit.find(params[:id])
-    @outfit.update!(outfit_params)
-    flash[:notice] = "アイテムを編集しました"
-    redirect_to outfit_url @outfit
+    if @outfit.update!(outfit_params)
+      flash[:notice] = "アイテムを編集しました"
+      redirect_to outfit_url @outfit
+    else
+      flash[:error] = "アイテムの編集に失敗しました"
+      render :edit
+    end  
   end
 
   def destroy
     @outfit = Outfit.find(params[:id])
-    @outfit.destroy
-    flash[:notice] = "アイテムを削除しました"
-    redirect_to outfits_url
+    if @outfit.destroy
+      flash[:notice] = "アイテムを削除しました"
+      redirect_to outfits_url
+    else
+      flash[:error] = "アイテムが削除できませんでした"
+      render :index
+    end
   end
 
   private

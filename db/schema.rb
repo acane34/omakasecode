@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_023827) do
+ActiveRecord::Schema.define(version: 2022_06_06_164850) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(version: 2022_06_07_023827) do
     t.string "tone", null: false
     t.boolean "volumey_flg"
     t.datetime "purchase_data"
+    t.string "image"
     t.integer "category_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
     t.index ["category_id"], name: "index_outfits_on_category_id"
     t.index ["user_id"], name: "index_outfits_on_user_id"
   end
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_023827) do
     t.string "username", null: false
     t.integer "gender"
     t.integer "age"
+    t.boolean "deleted_flg", default: false, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -64,7 +65,6 @@ ActiveRecord::Schema.define(version: 2022_06_07_023827) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "place_id"
-    t.boolean "deleted_flg", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["place_id"], name: "index_users_on_place_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
