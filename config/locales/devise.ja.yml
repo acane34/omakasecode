@@ -46,6 +46,7 @@ ja:
       signed_in: 'ログインしました。'
       signed_out: 'ログアウトしました。'
       already_signed_out: '既にログアウト済みです。'
+      deleted: '既に退会済みです。'
     unlocks:
       send_instructions: 'アカウントの凍結解除方法を数分以内にメールでご連絡します。'
       send_paranoid_instructions: 'アカウントが見つかった場合、アカウントの凍結解除方法を数分以内にメールでご連絡します。'
@@ -60,3 +61,4 @@ ja:
       not_saved:
         one: "エラーが発生したため %{resource} は保存されませんでした:"
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"
+      record_invalid: "バリデーションに失敗しました：%{errors}"

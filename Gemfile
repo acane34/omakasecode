@@ -34,21 +34,28 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
- # deviseを使用できる
- gem 'devise'
+# deviseを使用できる
+gem 'devise'
  
- # bootstrapを使用できる
- gem 'bootstrap', '~> 4.6.0'
- gem 'jquery-rails'
+# bootstrapを使用できる
+gem 'bootstrap', '~> 4.6.0'
+gem 'jquery-rails'
 
-  # 環境変数を使用できる
-  gem 'dotenv-rails'
+# 環境変数を使用できる
+gem 'dotenv-rails'
+
+gem 'faraday'
+
+# for image uploader with AWS S3
+gem 'carrierwave'
+gem 'fog'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'pry-rails'
 end
 
 group :development do

@@ -1,0 +1,288 @@
+<div class="container px-4 m-2">
+  <div class="row">
+    <%= form_with model: @outfit do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <div class="text-right">
+        <%= link_to outfits_path do %>
+          <p class="m-3 text-right btn btn-outline-success">一覧へ</p>
+        <% end %>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-control col-3">カテゴリー</label>
+        <div class="category-group">
+          <% @categories.each do |category| %>
+            <input  name="outfit[category_id]" value=<%= category.id %> id=category<%= category.id %> type="radio" class="category-radio-input"  />
+            <label for=category<%= category.id %> class="category-radio-label">
+              <%= category.name %>
+              <% if category.id ==1 %>
+                <%= render 'icons/tops' %>
+              <% elsif category.id ==2 %>
+                <%= render 'icons/pants' %>
+              <% elsif category.id ==3 %>
+                <%= render 'icons/skirt' %>
+              <% elsif category.id ==4 %>
+                <%= render 'icons/onepiece' %>
+              <% elsif category.id ==5 %>
+                <%= render 'icons/outer' %>
+              <% elsif category.id ==6 %>
+                <%= render 'icons/shoes' %>
+              <% elsif category.id ==7 %>
+                <%= render 'icons/item' %>
+              <% elsif category.id ==8 %>
+                <%= render 'icons/bag' %>
+              <% elsif category.id ==9 %>
+                <%= render 'icons/accessories' %>
+              <% end %>
+            </label>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :name, '名前', class:"form-control col-3" %>
+        <%= f.text_field :name,  class:"form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :description, '説明',  class:"form-control col-3" %>
+        <%= f.text_area :description,  class:"form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :seasons, '季節' , class:"form-control col-3" %>
+        <div id="season"  class="season-group">
+          <%= f.check_box :always, { id: "always", class: "season-check"}, "true", "false" %>
+          <%= f.label "一年中", for:"always", id:"checkAll", class: "season-label" %>
+
+          <%= f.check_box :spring, { id: "spring", class: "season-check season-checks"}, "true", "false" %>
+          <%= f.label "春", for:"spring", id:"sp", class: "season-label checks" %>
+
+          <%= f.check_box :summer, { id: "summer", class: "season-check season-checks"}, "true", "false" %>
+          <%= f.label "夏", for:"summer", id:"su", class: "season-label checks" %>
+
+          <%= f.check_box :autum, { id: "autum", class: "season-check season-checks"}, "true", "false" %>
+          <%= f.label "秋", for:"autum", id:"au" ,class: "season-label checks" %>
+
+          <%= f.check_box :winter, { id: "winter", class: "season-check season-checks"}, "true", "false" %>
+          <%= f.label "冬", for:"winter", id:"wi",class: "season-label checks" %>   
+    
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-control col-3">メインカラー</label>
+        <div id="color-group">
+          <section class="circle">
+            <% i=0 %>
+            <%= while i<14 do %>
+              <div class="item">
+                <%= f.label :major_color, '・', for:"#{i}",  class: "btn btn#{i} maru main-check" %>
+                <%= f.radio_button :major_color, :"#{i}",id:"#{i}",  class: "radio-inline__input form-control" %>
+              <% i+=1 %>
+              </div>
+            <% end %>
+          </section>
+        </div>
+      </div>
+
+      <div id="tone-group" class="tone-margin mb-3">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-control col-3">サブカラー</label>
+        <div id="color-group" class="sub-margin">
+          <section class="circle">
+            <% i=0 %>
+            <%= while i<14 do %>
+              <div class="sub-item">
+                <%= f.label :sub_color, '・', for:"sub#{i}",  class: "btn btn#{i} maru sub-check" %>
+                <%= f.radio_button :sub_color, :"#{i}",id:"sub#{i}",  class: "radio-inline__input form-control" %>
+              <% i+=1 %>
+              </div>
+            <% end %>
+          </section>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :image, '写真',  class:"form-control col-3" %>
+        <%= f.file_field :image %> 
+      </div>
+
+      <div class="mb-3">
+        <%= f.submit "登録", class:"form-control" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>
+<script>
+  // 円状に配置
+  $(function(){
+      var item_num = $('div.item').length;
+      var deg = 360.0/item_num;
+      var red = (deg*Math.PI/180.0);
+      var circle_r = $("div.item").width() * 2.5;
+      $('div.item').each(function(i, elem) {
+          var x = Math.cos(red * i) * circle_r + circle_r;
+          var y = Math.sin(red * i) * circle_r + circle_r;
+          $(elem).css('left', x);
+          $(elem).css('top', y);
+      });
+  });
+
+  // 円状に配置
+  $(function(){
+      var item_num = $('div.sub-item').length;
+      var deg = 360.0/item_num;
+      var red = (deg*Math.PI/180.0);
+      var circle_r = $("div.sub-item").width() * 2.5;
+      $('div.sub-item').each(function(i, elem) {
+          var x = Math.cos(red * i) * circle_r + circle_r;
+          var y = Math.sin(red * i) * circle_r + circle_r;
+          $(elem).css('left', x);
+          $(elem).css('top', y);
+      });
+  });
+
+  // チェックを変えると、その枠の色が移動
+  $(function(){
+    let main = document.getElementsByClassName('main-check');
+    let su = document.getElementsByClassName('sub-check');
+
+    $('input[name="outfit[major_color]"]').change(function(){
+      for(let i=0;i<main.length;i++){
+        main[i].classList.remove("stand-out");
+      }
+
+      let nextmaincheck = $(this);
+      let nextmainchecklabel = $('.main-check.btn'+nextmaincheck.val()).get();
+      nextmainchecklabel[0].classList.add("stand-out");
+
+    });
+
+    $('input[name="outfit[sub_color]"]').change(function(){
+      for(let i=0;i<su.length;i++){
+        su[i].classList.remove("stand-out");
+      }
+
+      let nextsubcheck = $(this);
+      let nextsubchecklabel = $('.sub-check.btn'+nextsubcheck.val()).get();
+      nextsubchecklabel[0].classList.add("stand-out");
+
+    });
+
+  });
+
+  // トーンの出現
+  $(function () {
+    // ラジオボタンを選択変更したら実行
+    $('input[name="outfit[major_color]"]').change(function () {
+        
+        // value値取得
+        var val = $(this).val();
+        var v = "v"+val;
+        var b = "b"+val;
+        var dp = "dp"+val;
+        var sf = "sf"+val;
+        var d = "d"+val;
+        var p = "p"+val;
+        var dkg = "dkg"+val;
+
+        $("#tone-group").empty();
+
+
+        // 新しいbuttonを作りたい
+        if(val!=13 && val!=0){
+        $('#tone-group').append(`<label class="form-control col-3">トーン</label><div class="tone"><input id="v" type="radio" class="radio-inline__input" value="v" name="outfit[tone]" /><label for="v" class="btn ${v} radio-inline__label">1</label></div><div class="tone"><input id="b" type="radio" class="radio-inline__input" value="b" name="outfit[tone]" /><label for="b" class="btn ${b} radio-inline__label">2</label></div><div class="tone"><input id="dp" type="radio" class="radio-inline__input" value="dp" name="outfit[tone]" /><label for="dp" class="btn ${dp} radio-inline__label">3</label></div><div class="tone"><input id="sf" type="radio" class="radio-inline__input" value="sf" name="outfit[tone]" /><label for="sf" class="btn ${sf} radio-inline__label">4</label></div><div class="tone"><input id="d" type="radio" class="radio-inline__input" value="d" name="outfit[tone]" /><label for="d" class="btn ${d} radio-inline__label">5</label></div><div class="tone"><input id="p" type="radio" class="radio-inline__input" value="p" name="outfit[tone]" /><label for="p" class="btn ${p} radio-inline__label">6</label></div><div class="tone"><input id="dkg" type="radio" class="radio-inline__input" value="dkg" name="outfit[tone]" /><label for="dkg" class="btn ${dkg} radio-inline__label">7</label></div>`);}
+        else{
+        $('#tone-group').append(`<label class="form-control col-3">トーン</label><div class="tone"><input id="w" type="radio" class="radio-inline__input" value="w" name="outfit[tone]" /><label for="w" class="btn w radio-inline__label">1</label></div><div class="tone"><input id="ltGy" type="radio" class="radio-inline__input" value="ltGy" name="outfit[tone]" /><label for="ltGy" class="btn ltGy radio-inline__label">2</label></div><div class="tone"><input id="dkGy" type="radio" class="radio-inline__input" value="dkGy" name="outfit[tone]" /><label for="dkGy" class="btn dkGy radio-inline__label">3</label></div><div class="tone"><input id="Bk" type="radio" class="radio-inline__input" value="Bk" name="outfit[tone]" /><label for="Bk" class="btn Bk radio-inline__label">4</label></div>`);}
+    });
+  });
+
+  // 季節チェックボックス
+  $(function () {
+    //「全て選択」のチェックボックス
+    let checkAll = document.getElementById("checkAll");
+    let all = document.getElementById("always")
+    //「全て選択」以外のチェックボックス
+    let el = document.getElementsByClassName("checks");
+
+    let spring = document.getElementById("spring");
+    let sp = document.getElementById("sp");
+    let summer = document.getElementById("summer");
+    let su = document.getElementById("su");
+    let autum = document.getElementById("autum");
+    let au = document.getElementById("au");
+    let winter = document.getElementById("winter");
+    let wi = document.getElementById("wi");
+
+
+    //全てにチェックを付ける・外す
+    const funcCheckAll = () => {
+        if(all.checked){
+          spring.checked = false;
+          summer.checked = false;
+          autum.checked = false;
+          winter.checked = false;
+        }else{
+          spring.checked = true;
+          summer.checked = true;
+          autum.checked = true;
+          winter.checked = true;
+        }
+
+    };
+
+    //「checks」のclassを持つ要素のチェック状態で「全て選択」のチェックをON/OFFする
+    const funcCheck = (e) => {
+      let count = 0;
+  
+      if(spring.checked && sp==e.currentTarget){}
+      else
+        if(spring.checked || sp==e.currentTarget){
+        count ++;
+      }
+      if(summer.checked && su==e.currentTarget){}
+      else 
+        if(summer.checked || su==e.currentTarget){
+          count ++;
+        }
+      if(autum.checked && au==e.currentTarget){}
+      else
+        if(autum.checked || au==e.currentTarget){
+        count ++;
+      }
+      if(winter.checked && wi==e.currentTarget){}
+      else
+        if(winter.checked || wi==e.currentTarget){
+        count ++;
+      }
+
+      if (count == 4) {
+          all.checked = true;
+      } else {
+          all.checked = false;
+      }
+    };
+
+    //「全て選択」のチェックボックスをクリックした時
+    checkAll.addEventListener(
+        "click",
+        () => {
+          
+          funcCheckAll(checkAll.checked);
+          
+        },false
+    );
+  
+    //「全て選択」以外のチェックボックスをクリックした時
+    for (let i = 0; i < el.length; i++) {
+        el[i].addEventListener("click", funcCheck, false);
+    };
+      
+  });
+ 
+</script>

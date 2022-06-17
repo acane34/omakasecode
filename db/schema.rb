@@ -10,13 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_16_081205) do
+ActiveRecord::Schema.define(version: 2022_06_06_164850) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "outfits", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description"
+    t.boolean "always", null: false
+    t.boolean "spring", null: false
+    t.boolean "summer", null: false
+    t.boolean "autum", null: false
+    t.boolean "winter", null: false
+    t.string "major_color", null: false
+    t.string "sub_color", null: false
+    t.string "tone", null: false
+    t.boolean "volumey_flg"
+    t.datetime "purchase_data"
+    t.string "image"
+    t.integer "category_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_outfits_on_category_id"
+    t.index ["user_id"], name: "index_outfits_on_user_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "prefecture"
+    t.float "lat"
+    t.float "lon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
-    t.string "area", null: false
     t.integer "gender"
     t.integer "age"
+    t.boolean "deleted_flg", default: false, null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -28,7 +64,9 @@ ActiveRecord::Schema.define(version: 2022_05_16_081205) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "place_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["place_id"], name: "index_users_on_place_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end

@@ -1,0 +1,285 @@
+.circle {
+  position: relative;
+
+}
+
+div.item {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: w0px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+div.sub-item {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  -webkit-border-radius: w0px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.tone-margin{
+  margin-top: 280px;
+}
+
+.sub-margin{
+  margin-bottom: 280px;
+}
+
+.radio-inline__input {
+  clip: rect(1px,1px,1px,1px);
+  position: absolute !important;
+}
+
+#tone-group{
+  overflow: hidden;
+}
+
+.tone{
+  float: left;
+  margin: 1px;
+}
+
+.maru{
+  color: transparent;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.maru:hover{
+  color: transparent;
+}
+
+.radio-inline__label {
+  color: transparent;
+  border-radius: 50%;
+}
+
+.radio-inline__label:hover {
+  color: transparent;
+}
+
+.radio-inline__input:checked + .radio-inline__label {
+  outline-color: #62625f;
+  outline-offset: -2px;
+  outline-style: solid;
+  outline-width: 4px;
+  margin: 2px;
+}
+
+.stand-out{
+  outline-color: #62625f;
+  outline-offset: -2px;
+  outline-style: solid;
+  outline-width: 4px;
+  margin: 2px;
+}
+
+.category-group{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+}
+
+.category-radio-input{
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+}
+
+.category-radio-label{
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 13px;
+  border-radius: 3px;
+  transition: all .2s;
+  background-color:#CAB2D6;
+}
+
+.category-radio-input:checked + .category-radio-label {
+  background: #232166;
+  color: #fff;
+  text-shadow: 0 0 1px rgba(0,0,0,.7);
+}
+
+.category-radio-input:checked +.category-radio-label svg{
+  fill: white;
+}
+
+.category-radio-input:focus +.category-radio-label svg{
+  fill: white;
+}
+.category-radio-input:focus + .category-radio-label {
+  outline-color: white;
+  outline-offset: -2px;
+  outline-style: auto;
+  outline-width: 5px;
+}
+
+.season-group{
+  display:flex;
+	flex-wrap: wrap;
+  flex-direction:row;
+}
+
+.season-check {
+  display:none;
+}
+
+.season-label {
+	display: block;
+	flex-wrap: wrap;
+  position: relative;
+  margin: 10px;
+  padding: 15px 30px 15px 62px;
+  border: 3px solid #fff;
+  border-radius: 30px;
+  color: #fff;
+  background-color: #6a8494;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color .2s, box-shadow .2s;
+}
+
+.season-label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  width: 32px;
+  border: 3px solid #fff;
+  border-radius: 100px;
+  transition: background-color .2s;
+}
+
+.season-label:hover, .season-check:focus + .season-label {
+  box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+}
+
+.season-check:checked + .season-label {
+  background-color: #ab576c;
+}
+
+.weather-icon{
+  width:90%;
+  height:90%;
+}
+
+.no-underline{
+  text-decoration:none !important;
+  color: black;
+}
+
+.index-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+.outfit-item{
+  background-color: #eeebe7;
+}
+.hid{
+  display:none;
+}
+.nonline{
+  text-decoration: none;
+  color: black;
+}
+
+.always-text{
+  color: darkslategrey;
+}
+
+.spring-el{
+  color:pink;
+}
+
+.summer-el{
+  color: rgb(104, 176, 215);
+}
+
+.autum-el{
+  color: rgb(112, 29, 29);
+}
+
+.winter-el{
+  color: blue;
+}
+
+.season-icons{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.interval{
+  height: 20px;
+}
+
+.edit-link{
+  position: absolute;
+  bottom:5px;
+}
+
+.image-size{
+  width: 90%;
+  height: auto;
+}
+
+.prefecture-select {
+  overflow: hidden;
+  width: 90%;
+  margin: 2px auto;
+  text-align: center;
+}
+.prefecture-select select {
+  width: 100%;
+  padding-right: 1em;
+  cursor: pointer;
+  text-indent: 10px;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.prefecture-select select::-ms-expand {
+    display: none;
+}
+.prefecture-select {
+  position: relative;
+  border: 2px solid #ced4da;
+  background: #ffffff;
+}
+.prefecture-select::before {
+  position: absolute;
+  top: 1em;
+  right: 0.8em;
+  width: 0;
+  height: 0;
+  padding: 0;
+  content: '';
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(97, 65, 11, 0.392);
+  pointer-events: none;
+}
+.prefecture-select select {
+  padding: 8px 38px 8px 8px;
+  color: black;
+}
+
+.center{
+  display: flex;
+  align-items: center;
+}

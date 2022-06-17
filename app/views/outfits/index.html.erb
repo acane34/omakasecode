@@ -1,0 +1,128 @@
+<div class="m-3">
+  <%= link_to new_outfit_path do %>
+    <p class="mt-3 text-left btn btn-outline-success">新しく登録する</p>
+  <% end %>
+
+  <div class="index-container"> 
+    <% @outfits.each do |outfit| %>
+      <%= link_to outfit_path(outfit), class:"card-link nonline" do %>
+        <div class="card m-2 outfit-item" style="width: 10rem;">
+          <div class="row m-1">
+            <div class="get-color hid"><%= outfit.major_color %></div>
+            <div class="get-tone hid"><%= outfit.tone %></div>
+
+            <div class="col-2 mt-3 outfit-icon">
+              <% if outfit.category_id == 1 %>
+                <svg class="outfit-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M18 24h-12v-12l-3 10.357-3-.773 4-17.584 3.782-2.002c-.417 1.998.72 4.432 1.516 6.158.804-.703 1.301-1.157 2.7-2.252 1.394 1.093 1.822 1.485 2.7 2.251.83-1.796 1.935-4.186 1.518-6.158l3.784 2.003 4 17.584-3 .731-2.882-10.315-.118 12zm-6-3c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm0-3c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm0-3.001c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm0-2.998c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm0-3.001c.276 0 .5.224.5.5s-.224.5-.5.5-.5-.224-.5-.5.224-.5.5-.5zm-2.425-2.15c-2.099-4.546-1.049-6.858 2.422-6.846 2.888 0 4.823 1.646 2.422 6.846-.877-.766-2.162-1.76-2.422-1.959-.029-.023-2.389 1.93-2.422 1.959zm2.438-2.226c1.396-.419 3.992-3.633-.013-3.624-4.009.009-1.39 3.228-.003 3.629l.016-.005z"/></svg>
+              <% elsif outfit.category_id == 2 %>
+                <%= render 'icons/pants' %>
+              <% elsif outfit.category_id == 3 %>
+                <%= render 'icons/skirt' %>
+              <% elsif outfit.category_id == 4 %>
+                <%= render 'icons/onepiece' %>
+              <% elsif outfit.category_id == 5 %>
+                <%= render 'icons/outer' %>
+              <% elsif outfit.category_id == 6 %>
+                <%= render 'icons/shoes' %>
+              <% elsif outfit.category_id == 7 %>
+                <%= render 'icons/item' %>
+              <% elsif outfit.category_id == 8 %>
+                <%= render 'icons/bag' %>
+              <% elsif outfit.category_id == 9 %>
+                <%= render 'icons/accessories' %>
+              <% end %>
+            </div>
+
+            <div class="col mt-3">
+              <%= image_tag outfit.image.to_s, class:"image-size" %>
+            </div>
+          </div>
+
+              <div class="card-body">
+                
+                <% if outfit.name.present? %>
+                  <h6 class="card-title"><%= outfit.name %></h6>
+                <% end %>
+
+                <% if outfit.description.present? %>
+                  <p class="card-text"><%= outfit.description %></p>
+                <% end %>
+
+                <div class="season-icons">
+
+                  <% if outfit.always == true %>
+                    <div class="m-1">
+                      <div class="always-text">1年中</div>
+                      <i class="spring-el fa-solid fa-bug"></i>&nbsp; 
+                      <i class="summer-el fa-solid fa-umbrella-beach"></i>&nbsp;
+                      <i class="autum-el fa-brands fa-pagelines"></i>&nbsp;
+                      <i class="winter-el fa-solid fa-snowflake"></i>
+                    </div>
+                  <% else %>                
+                    <% if outfit.spring == true %>
+                    <div class="spring-el m-1">
+                      春　<i class="fa-solid fa-bug"></i>
+                    </div>
+                    <% end %>
+                    
+                    <% if outfit.summer == true  %>
+                    <div class="summer-el m-1">
+                      夏　<i class="fa-solid fa-umbrella-beach"></i>
+                    </div>
+                    <% end %>
+
+                    <% if outfit.autum == true %>
+                    <div class="autum-el m-1">
+                      秋　<i class="fa-brands fa-pagelines"></i>
+                    </div>
+                    <% end %>
+
+                    <% if outfit.winter == true %>
+                    <div class="winter-el m-1">
+                      冬　<i class="fa-solid fa-snowflake"></i>
+                    </div>
+                    <% end %>
+                  <% end %>
+                </div>
+
+                <div class="interval">
+                </div>
+
+                <div class="mt-3 edit-link">
+                  <%= link_to "編集", edit_outfit_path(outfit), class:"card-link m-3" %>
+                  <%= link_to '削除', outfit_path(outfit), method: :delete, data: { confirm: '削除してよろしいですか?' }  %>
+                </div>
+
+              </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
+
+<script>
+$(function(){
+  let count = document.querySelector('.index-container').childElementCount/2;
+  let icon = document.getElementsByClassName("outfit-icon");
+  let color = document.getElementsByClassName("get-color");
+  let tone = document.getElementsByClassName("get-tone");
+  console.log(count)
+  for (let i=0;i<count;i++){
+    console.log(color[i])
+    colorV = color[i].innerHTML;
+    console.log(colorV);
+    toneV = tone[i].innerHTML;
+    console.log(toneV)
+    let classV;
+
+    if(colorV=="0" || colorV=="13"){
+      classV = "c-"+toneV;
+    }else{
+      classV = "c-"+toneV+colorV;
+    }
+    icon[i].classList.add(classV);
+  }
+
+});
+</script>
