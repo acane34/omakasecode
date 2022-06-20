@@ -6,6 +6,9 @@ class HomeController < ApplicationController
     @today_temp = @forecast[0]["f_temp"]
     @today_tdefference = @forecast[0]["temp_defference"]
     @today_icon = @forecast[0]["icon"]
+
+    # おすすめコーデロジック
+    
   end
 
   def week

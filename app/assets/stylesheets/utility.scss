@@ -764,7 +764,83 @@
   color:$dkg12;
 }
 
+/*** margin ***/
+$marginClass: (
+  m: margin,
+  mt: margin-top,
+  mb: margin-bottom,
+  mr: margin-right,
+  ml: margin-left
+);
+@each $key, $value in $marginClass {
+  @for $i from 0 through 300 {
+    .u-#{$key}_#{$i} {
+      #{$value}: #{$i}px !important;
+    }
+  }
+}
 
+.u-mx_20 {
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+}
 
+/*** padding ***/
+$paddingClass: (
+  p: padding,
+  pt: padding-top,
+  pb: padding-bottom,
+  pr: padding-right,
+  pl: padding-left
+);
+@each $key, $value in $paddingClass {
+  @for $i from 0 through 100 {
+    .u-#{$key}_#{$i} {
+      #{$value}: #{$i}px !important;
+    }
+  }
+}
+
+/*** width ***/
+@for $i from 0 through 600 {
+  .u-width_#{$i*5}px {
+    width: #{$i * 5}px;
+  }
+}
+
+.u-width_226px {
+  width: 226px;
+}
+
+.u-width_880px {
+  width: 880px;
+}
+
+.u-width_1440px {
+  width: 1440px;
+}
+
+.u-width_85per {
+  width: 85%;
+}
+
+/*** height ***/
+@for $i from 0 through 500 {
+  .u-height_#{$i}px {
+    height: #{$i}px;
+  }
+}
+
+/*** font ***/
+$fontSizeClass: (
+  fs: font-size,
+);
+@each $key, $value in $fontSizeClass {
+  @for $i from 10 through 40 {
+    .u-#{$key}_#{$i} {
+      #{$value}: #{$i}px;
+    }
+  }
+}
 
 
