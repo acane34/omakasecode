@@ -1,5 +1,4 @@
 <div>
-
   <h4 class="m-3"><%= @place.prefecture %></h4>
 
   <table class="table">
@@ -13,14 +12,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @forecast.each do |weather| %>
+      <% @forecast.each_with_index do |weather, i| %>
         <tr>
           <th scope="row"><%= weather["date"].month %>/<%= weather["date"].day %></th>
           <td><%= weather["f_temp"] %></td>
           <td><%= weather["temp_defference"] %></td>
           <td><%= image_tag "/weather_icons/#{weather["icon"]}" %></td>
           <td>
-            <%= link_to "おすすめコーデを見る", week_path, class:"btn btn-outline-secondary btn-sm" %>
+            <%= link_to "おすすめコーデを見る", "/week/#{i+1}", class:"btn btn-outline-secondary btn-sm" %>
           </td>
         </tr>
       <% end %>

@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     delete "logout", :to => "users/sessions#destroy"
 
     get "week", :to => "home#week"
+    for i in 1..8 do
+      get "week/#{i}", :to => "home#week#{i}"
+    end
     get "home", :to => "home#index"
   end
 

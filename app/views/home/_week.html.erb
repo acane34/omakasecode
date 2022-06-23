@@ -1,20 +1,23 @@
 <div>
+
   <div class="d-flex flex-row">
-    <h4 class="m-3">今日の天気　　<%= @place.prefecture %></h4>
+    <h4 class="m-3">
+    <%= @forecast[a]["date"].month %>/<%= @forecast[a]["date"].day %>の天気　　
+    <%= @place.prefecture %></h4>
   </div>
 
   <div class="row m-3">
     <div class="col">
       <div class="m-2">
-        <h6>日中の気温　<%= @today_temp %>度</h7>        
+        <h6>日中の気温　<%= @forecast[a]["f_temp"] %>度</h7>        
       </div>
       <div class="m-2">
-        <h6>気温差 <%= @today_tdefference %>度</h6>
+        <h6>気温差 <%= @forecast[a]["temp_defference"] %>度</h6>
       </div>
     </div>
     <div class="col m-2">
       <div class="">
-        <%= image_tag "/weather_icons/#{@today_icon}" %>
+        <%= image_tag "/weather_icons/#{@forecast[a]["icon"]}" %>
       </div>
     </div>
   </div>
@@ -30,33 +33,33 @@
 <div class="m-3"> 
   <div class="mb-3">
     <div class="u-ml_50 u-mr_30">
-      <% if @basecode[0].category_id == 4 %>
-        <div class="c-<%= @basecode[0].tone %><%= @basecode[0].major_color %>">
+      <% if @weekly_basecode[0].category_id == 4 %>
+        <div class="c-<%= @weekly_basecode[0].tone %><%= @weekly_basecode[0].major_color %>">
           <%= render 'icons/onepiece' %>
         </div>
-      <% elsif @basecode[0].category_id == 1 %>
-        <div class="c-<%= @basecode[0].tone %><%= @basecode[0].major_color %>">
+      <% elsif @weekly_basecode[0].category_id == 1 %>
+        <div class="c-<%= @weekly_basecode[0].tone %><%= @weekly_basecode[0].major_color %>">
           <%= render 'icons/tops' %>
         </div>
-        <% if @basecode[1].category_id == 2 %>
-          <div class="c-<%= @basecode[1].tone %><%= @basecode[1].major_color %>">
+        <% if @weekly_basecode[1].category_id == 2 %>
+          <div class="c-<%= @weekly_basecode[1].tone %><%= @weekly_basecode[1].major_color %>">
             <%= render 'icons/pants' %>
           </div>
-        <% elsif @basecode[1].category_id == 3 %>
-          <div class="c-<%= @basecode[1].tone %><%= @basecode[1].major_color %>">
+        <% elsif @weekly_basecode[1].category_id == 3 %>
+          <div class="c-<%= @weekly_basecode[1].tone %><%= @weekly_basecode[1].major_color %>">
             <%= render 'icons/skirt' %>
           </div>
         <% end %>
-      <% elsif @basecode[0].category_id == 2 || @basecode[0].category_id == 3 %>
-        <div class="c-<%= @basecode[1].tone %><%= @basecode[1].major_color %>">
+      <% elsif @weekly_basecode[0].category_id == 2 || @weekly_basecode[0].category_id == 3 %>
+        <div class="c-<%= @weekly_basecode[1].tone %><%= @weekly_basecode[1].major_color %>">
           <%= render 'icons/tops' %>
         </div>
-        <% if @basecode[0].category_id == 2 %>
-          <div class="c-<%= @basecode[0].tone %><%= @basecode[0].major_color %>">
+        <% if @weekly_basecode[0].category_id == 2 %>
+          <div class="c-<%= @weekly_basecode[0].tone %><%= @weekly_basecode[0].major_color %>">
             <%= render 'icons/pants' %>
           </div>
-        <% elsif @basecode[0].category_id == 3 %>
-          <div class="c-<%= @basecode[0].tone %><%= @basecode[0].major_color %>">
+        <% elsif @weekly_basecode[0].category_id == 3 %>
+          <div class="c-<%= @weekly_basecode[0].tone %><%= @weekly_basecode[0].major_color %>">
             <%= render 'icons/skirt' %>
           </div>
         <% end %>
@@ -64,7 +67,7 @@
     </div>
   </div>
   <div class="code-container">
-    <% @basecode.each do |outfit| %>
+    <% @weekly_basecode.each do |outfit| %>
       <%= link_to outfit_path(outfit), class:"card-link nonline" do %>
         <div class="card outfit-item" style="width: 9rem;">
           <div class="row m-1">
@@ -142,35 +145,35 @@
   <p class="u-ml_10 m-3">オプション</p>
   <div class="mb-3">
     <div class="u-ml_50 u-mr_30">
-      <% if @outer %>
-        <div class="mr-3 icon-box c-<%= @outer.tone %><%=@outer.major_color %>">
+      <% if @weekly_outer %>
+        <div class="mr-3 icon-box c-<%= @weekly_outer.tone %><%=@weekly_outer.major_color %>">
           <%= render 'icons/outer' %>
         </div>
       <% end %>
-      <% if @accessory %>
-        <div class="mr-3 icon-box c-<%= @accessory.tone %><%= @accessory.major_color %>">
+      <% if @weekly_accessory %>
+        <div class="mr-3 icon-box c-<%= @weekly_accessory.tone %><%= @weekly_accessory.major_color %>">
           <%= render 'icons/accessories' %>
         </div>
       <% end %>
-      <% if @bag %>
-        <div class="mr-3 icon-box c-<%= @bag.tone %><%= @bag.major_color %>">
+      <% if @weekly_bag %>
+        <div class="mr-3 icon-box c-<%= @weekly_bag.tone %><%= @weekly_bag.major_color %>">
           <%= render 'icons/bag' %>
         </div>
       <% end %>
-      <% if @item %>
-        <div class="mr-3 icon-box c-<%= @item.tone %><%= @item.major_color %>">
+      <% if @weekly_item %>
+        <div class="mr-3 icon-box c-<%= @weekly_item.tone %><%= @weekly_item.major_color %>">
           <%= render 'icons/item' %>
         </div>
       <% end %>
-      <% if @shoes %>
-        <div class="icon-box c-<%= @shoes.tone %><%= @shoes.major_color %>">
+      <% if @weekly_shoes %>
+        <div class="icon-box c-<%= @weekly_shoes.tone %><%= @weekly_shoes.major_color %>">
           <%= render 'icons/shoes' %>
         </div>
       <% end %>
     </div>
   </div>
   <div class="code-container">
-    <% @items.each do |outfit| %>
+    <% @weekly_items.each do |outfit| %>
       <% if outfit %>
         <%= link_to outfit_path(outfit), class:"card-link nonline" do %>
           <div class="card outfit-item" style="width: 9rem;">
@@ -247,3 +250,4 @@
     <% end %>
   </div>
 </div>
+
