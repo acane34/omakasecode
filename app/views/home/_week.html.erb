@@ -1,0 +1,253 @@
+<div>
+
+  <div class="d-flex flex-row">
+    <h4 class="m-3">
+    <%= @forecast[a]["date"].month %>/<%= @forecast[a]["date"].day %>の天気　　
+    <%= @place.prefecture %></h4>
+  </div>
+
+  <div class="row m-3">
+    <div class="col">
+      <div class="m-2">
+        <h6>日中の気温　<%= @forecast[a]["f_temp"] %>度</h7>        
+      </div>
+      <div class="m-2">
+        <h6>気温差 <%= @forecast[a]["temp_defference"] %>度</h6>
+      </div>
+    </div>
+    <div class="col m-2">
+      <div class="">
+        <%= image_tag "/weather_icons/#{@forecast[a]["icon"]}" %>
+      </div>
+    </div>
+  </div>
+  <div class="m-3">
+    <%= link_to "１週間分をまとめて見る", week_path, class:"btn btn-outline-secondary" %>
+  </div>
+  <hr>
+  <div>
+    <h4 class="m-3">おすすめコーデ</h4>
+  </div>
+</div>
+
+<div class="m-3"> 
+  <div class="mb-3">
+    <div class="u-ml_50 u-mr_30">
+      <% if @weekly_basecode[0].category_id == 4 %>
+        <div class="c-<%= @weekly_basecode[0].tone %><%= @weekly_basecode[0].major_color %>">
+          <%= render 'icons/onepiece' %>
+        </div>
+      <% elsif @weekly_basecode[0].category_id == 1 %>
+        <div class="c-<%= @weekly_basecode[0].tone %><%= @weekly_basecode[0].major_color %>">
+          <%= render 'icons/tops' %>
+        </div>
+        <% if @weekly_basecode[1].category_id == 2 %>
+          <div class="c-<%= @weekly_basecode[1].tone %><%= @weekly_basecode[1].major_color %>">
+            <%= render 'icons/pants' %>
+          </div>
+        <% elsif @weekly_basecode[1].category_id == 3 %>
+          <div class="c-<%= @weekly_basecode[1].tone %><%= @weekly_basecode[1].major_color %>">
+            <%= render 'icons/skirt' %>
+          </div>
+        <% end %>
+      <% elsif @weekly_basecode[0].category_id == 2 || @weekly_basecode[0].category_id == 3 %>
+        <div class="c-<%= @weekly_basecode[1].tone %><%= @weekly_basecode[1].major_color %>">
+          <%= render 'icons/tops' %>
+        </div>
+        <% if @weekly_basecode[0].category_id == 2 %>
+          <div class="c-<%= @weekly_basecode[0].tone %><%= @weekly_basecode[0].major_color %>">
+            <%= render 'icons/pants' %>
+          </div>
+        <% elsif @weekly_basecode[0].category_id == 3 %>
+          <div class="c-<%= @weekly_basecode[0].tone %><%= @weekly_basecode[0].major_color %>">
+            <%= render 'icons/skirt' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="code-container">
+    <% @weekly_basecode.each do |outfit| %>
+      <%= link_to outfit_path(outfit), class:"card-link nonline" do %>
+        <div class="card outfit-item" style="width: 9rem;">
+          <div class="row m-1">
+            <div class="col-2 mt-3 c-<%= outfit.tone %><%= outfit.major_color %>">
+              <% if outfit.category_id == 1 %>
+                <%= render 'icons/tops' %>
+              <% elsif outfit.category_id == 2 %>
+                <%= render 'icons/pants' %>
+              <% elsif outfit.category_id == 3 %>
+                <%= render 'icons/skirt' %>
+              <% elsif outfit.category_id == 4 %>
+                <%= render 'icons/onepiece' %>
+              <% end %>
+            </div>
+
+            <div class="col mt-3">
+              <%= image_tag outfit.image.to_s, class:"image-size" %>
+            </div>
+          </div>
+
+              <div class="card-body">
+                
+                <% if outfit.name.present? %>
+                  <p class="card-title"><%= outfit.name %></p>
+                <% end %>
+
+                <% if outfit.description.present? %>
+                  <div class="card-text"><%= outfit.description %></p>
+                <% end %>
+
+                <div class="season-icons">
+
+                  <% if outfit.always == true %>
+                    <div class="m-1">
+                      <div class="always-text">1年中</div>
+                      <i class="spring-el fa-solid fa-bug"></i>&nbsp; 
+                      <i class="summer-el fa-solid fa-umbrella-beach"></i>&nbsp;
+                      <i class="autum-el fa-brands fa-pagelines"></i>&nbsp;
+                      <i class="winter-el fa-solid fa-snowflake"></i>
+                    </div>
+                  <% else %>                
+                    <% if outfit.spring == true %>
+                    <div class="spring-el m-1">
+                      春　<i class="fa-solid fa-bug"></i>
+                    </div>
+                    <% end %>
+                    
+                    <% if outfit.summer == true  %>
+                    <div class="summer-el m-1">
+                      夏　<i class="fa-solid fa-umbrella-beach"></i>
+                    </div>
+                    <% end %>
+
+                    <% if outfit.autum == true %>
+                    <div class="autum-el m-1">
+                      秋　<i class="fa-brands fa-pagelines"></i>
+                    </div>
+                    <% end %>
+
+                    <% if outfit.winter == true %>
+                    <div class="winter-el m-1">
+                      冬　<i class="fa-solid fa-snowflake"></i>
+                    </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<br>
+<div class="m-3"> 
+  <p class="u-ml_10 m-3">オプション</p>
+  <div class="mb-3">
+    <div class="u-ml_50 u-mr_30">
+      <% if @weekly_outer %>
+        <div class="mr-3 icon-box c-<%= @weekly_outer.tone %><%=@weekly_outer.major_color %>">
+          <%= render 'icons/outer' %>
+        </div>
+      <% end %>
+      <% if @weekly_accessory %>
+        <div class="mr-3 icon-box c-<%= @weekly_accessory.tone %><%= @weekly_accessory.major_color %>">
+          <%= render 'icons/accessories' %>
+        </div>
+      <% end %>
+      <% if @weekly_bag %>
+        <div class="mr-3 icon-box c-<%= @weekly_bag.tone %><%= @weekly_bag.major_color %>">
+          <%= render 'icons/bag' %>
+        </div>
+      <% end %>
+      <% if @weekly_item %>
+        <div class="mr-3 icon-box c-<%= @weekly_item.tone %><%= @weekly_item.major_color %>">
+          <%= render 'icons/item' %>
+        </div>
+      <% end %>
+      <% if @weekly_shoes %>
+        <div class="icon-box c-<%= @weekly_shoes.tone %><%= @weekly_shoes.major_color %>">
+          <%= render 'icons/shoes' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="code-container">
+    <% @weekly_items.each do |outfit| %>
+      <% if outfit %>
+        <%= link_to outfit_path(outfit), class:"card-link nonline" do %>
+          <div class="card outfit-item" style="width: 9rem;">
+            <div class="row m-1">
+              <div class="col-2 mt-3 c-<%= outfit.tone %><%= outfit.major_color %>">
+                <% if outfit.category_id == 5 %>
+                  <%= render 'icons/outer' %>
+                <% elsif outfit.category_id == 6 %>
+                  <%= render 'icons/shoes' %>
+                <% elsif outfit.category_id == 7 %>
+                  <%= render 'icons/item' %>
+                <% elsif outfit.category_id == 8 %>
+                  <%= render 'icons/bag' %>
+                <% elsif outfit.category_id == 9 %>
+                  <%= render 'icons/accessories' %>
+                <% end %>
+              </div>
+
+              <div class="col mt-3">
+                <%= image_tag outfit.image.to_s, class:"image-size" %>
+              </div>
+            </div>
+
+                <div class="card-body">
+                  
+                  <% if outfit.name.present? %>
+                    <p class="card-title"><%= outfit.name %></p>
+                  <% end %>
+
+                  <% if outfit.description.present? %>
+                    <div class="card-text"><%= outfit.description %></p>
+                  <% end %>
+
+                  <div class="season-icons">
+
+                    <% if outfit.always == true %>
+                      <div class="m-1">
+                        <div class="always-text">1年中</div>
+                        <i class="spring-el fa-solid fa-bug"></i>&nbsp; 
+                        <i class="summer-el fa-solid fa-umbrella-beach"></i>&nbsp;
+                        <i class="autum-el fa-brands fa-pagelines"></i>&nbsp;
+                        <i class="winter-el fa-solid fa-snowflake"></i>
+                      </div>
+                    <% else %>                
+                      <% if outfit.spring == true %>
+                      <div class="spring-el m-1">
+                        春　<i class="fa-solid fa-bug"></i>
+                      </div>
+                      <% end %>
+                      
+                      <% if outfit.summer == true  %>
+                      <div class="summer-el m-1">
+                        夏　<i class="fa-solid fa-umbrella-beach"></i>
+                      </div>
+                      <% end %>
+
+                      <% if outfit.autum == true %>
+                      <div class="autum-el m-1">
+                        秋　<i class="fa-brands fa-pagelines"></i>
+                      </div>
+                      <% end %>
+
+                      <% if outfit.winter == true %>
+                      <div class="winter-el m-1">
+                        冬　<i class="fa-solid fa-snowflake"></i>
+                      </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

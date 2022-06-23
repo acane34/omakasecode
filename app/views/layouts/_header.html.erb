@@ -1,11 +1,13 @@
 <header>
   <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm samazon-header-container">
-    <a class="navbar-brand" href="/">
+    <div class="no-underline">
+
       <%= ENV["APP_NAME"] %>
       <% if user_signed_in? %>
-        　　　<i class="fa-solid fa-house-chimney-window"></i>　<%= current_user.username %>さん
+      　　　<%= link_to home_path, class:"no-underline" do %><i class="fa-solid fa-house-chimney-window"></i><% end %>　<%= current_user.username %>さん
       <% end %>
-    </a>
+      
+    </div>
     <form class="form-inline">
       <div class="form-group">
         <input class="form-control">

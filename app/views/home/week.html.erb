@@ -1,0 +1,29 @@
+<div>
+  <h4 class="m-3"><%= @place.prefecture %></h4>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">日付</th>
+        <th scope="col">日中の気温</th>
+        <th scope="col">気温差</th>
+        <th scope="col">天気</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @forecast.each_with_index do |weather, i| %>
+        <tr>
+          <th scope="row"><%= weather["date"].month %>/<%= weather["date"].day %></th>
+          <td><%= weather["f_temp"] %></td>
+          <td><%= weather["temp_defference"] %></td>
+          <td><%= image_tag "/weather_icons/#{weather["icon"]}" %></td>
+          <td>
+            <%= link_to "おすすめコーデを見る", "/week/#{i+1}", class:"btn btn-outline-secondary btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

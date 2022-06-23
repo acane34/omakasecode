@@ -1,0 +1,129 @@
+<div class="m-5">
+  <div class="m-2">
+    <div class="get-color hid"><%= @outfit.major_color %></div>
+    <div class="get-tone hid"><%= @outfit.tone %></div>
+
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <h6 class="col m-1"><%= Category.find_by(id: @outfit.category_id ).name %></h6>
+          <!-アイコンゾーン-->
+            <div class="col outfit-icon">
+              <% if @outfit.category_id == 1 %>
+                <%= render 'icons/tops' %>
+              <% elsif @outfit.category_id == 2 %>
+                <%= render 'icons/pants' %>
+              <% elsif @outfit.category_id == 3 %>
+                <%= render 'icons/skirt' %>
+              <% elsif @outfit.category_id == 4 %>
+                <%= render 'icons/onepiece' %>
+              <% elsif @outfit.category_id == 5 %>
+                <%= render 'icons/outer' %>
+              <% elsif @outfit.category_id == 6 %>
+                <%= render 'icons/shoes' %>
+              <% elsif @outfit.category_id == 7 %>
+                <%= render 'icons/item' %>
+              <% elsif @outfit.category_id == 8 %>
+                <%= render 'icons/bag' %>
+              <% elsif @outfit.category_id == 9 %>
+                <%= render 'icons/accessories' %>
+              <% end %>
+            </div>
+        </div>
+
+        <!-季節アイコンゾーン-->
+        <div class="season-icons mt-4">
+    
+          <% if @outfit.always == true %>
+            <div class="m-1">
+              <div class="always-text">1年中</div>
+              <i class="spring-el fa-solid fa-bug"></i>&nbsp; 
+              <i class="summer-el fa-solid fa-umbrella-beach"></i>&nbsp;
+              <i class="autum-el fa-brands fa-pagelines"></i>&nbsp;
+              <i class="winter-el fa-solid fa-snowflake"></i>
+            </div>
+          <% else %>                
+            <% if @outfit.spring == true %>
+            <div class="spring-el m-1">
+              春　<i class="fa-solid fa-bug"></i>
+            </div>
+            <% end %>
+            
+            <% if @outfit.summer == true  %>
+            <div class="summer-el m-1">
+              夏　<i class="fa-solid fa-umbrella-beach"></i>
+            </div>
+            <% end %>
+    
+            <% if @outfit.autum == true %>
+            <div class="autum-el m-1">
+              秋　<i class="fa-brands fa-pagelines"></i>
+            </div>
+            <% end %>
+    
+            <% if @outfit.winter == true %>
+            <div class="winter-el m-1">
+              冬　<i class="fa-solid fa-snowflake"></i>
+            </div>
+            <% end %>
+          <% end %>
+        </div>   
+                  
+        <!-名前ゾーン-->
+        <div class="mt-2">
+          <h7>名前：<%= @outfit.name %></h7>
+        </div> 
+
+        <!-説明ゾーン-->
+        <div class="mt-2">
+          <% if @outfit.description.present? %>
+            <p>説明：<%= @outfit.description %></p>
+          <% end %>
+        </div>    
+      </div>
+      <div class="col">
+        <%= image_tag @outfit.image.to_s, class:"image-size" %>
+      </div>
+    </div>
+
+    <!-各種リンク-->
+    <div class="m-3">
+      <div class="row">
+        <div class="col-3 mt-1">
+          <%= link_to "編集", edit_outfit_path(@outfit) %>
+        </div>
+        <div class="col-3 mt-1">
+          <%= link_to "一覧に戻る", outfits_path %>
+        </div>
+        <div class="col-6 mt-1">
+          <%= link_to 'アイテムを削除', outfit_path(@outfit), method: :delete, data: { confirm: '削除してよろしいですか?' }  %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // アイコンの色
+  $(function(){
+    let icon = document.getElementsByClassName("outfit-icon");
+    let color = document.getElementsByClassName("get-color");
+    let tone = document.getElementsByClassName("get-tone");
+
+      colorV = color[0].innerHTML;
+      console.log(colorV);
+      toneV = tone[0].innerHTML;
+      console.log(toneV)
+      let classV;
+
+      if(colorV=="0" || colorV=="13"){
+        classV = "c-"+toneV;
+      }else{
+        classV = "c-"+toneV+colorV;
+      }
+      console.log(classV)
+      icon[0].classList.add(classV);
+  });
+</script>
+

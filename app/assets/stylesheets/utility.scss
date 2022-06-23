@@ -1,0 +1,878 @@
+@import "colors";
+
+// 白から黒(無彩色)
+.w{
+  background-color: $w;
+}
+.c-w{
+  fill: $w;
+  color: $w;
+}
+.c-w0{
+  fill: $w;
+  color: $w;
+}
+.c-w13{
+  fill: $w;
+  color: $w;
+}
+
+.ltGy{
+  background-color: $ltGy;
+}
+.c-ltGy{
+  fill: $ltGy;
+  color: $ltGy;
+}
+.c-ltGy0{
+  fill: $ltGy;
+  color: $ltGy;
+}
+.c-ltGy13{
+  fill: $ltGy;
+  color: $ltGy;
+}
+
+.dkGy{
+  background-color: $dkGy;
+}
+.c-dkGy{
+  fill: $dkGy;
+  color: $dkGy;
+}
+.c-dkGy0{
+  fill: $dkGy;
+  color: $dkGy;
+}
+.c-dkGy13{
+  fill: $dkGy;
+  color: $dkGy;
+}
+
+.Bk{
+  background-color: $Bk;
+}
+.c-Bk{
+  fill :$Bk;
+  color: $Bk;
+}
+.c-Bk0{
+  fill :$Bk;
+  color: $Bk;
+}
+.c-Bk13{
+  fill :$Bk;
+  color: $Bk;
+}
+
+// 原色
+.btn0{
+  background-color: $w;
+}
+.btn1 {
+  background-color: $color1;
+}   
+.btn2 {       
+  background-color:$color2;
+}
+.btn3 {
+  background-color: $color3;
+}
+.btn4 {
+  background-color: $color4;
+}
+.btn5 {
+  background-color: $color5;
+}
+.btn6 {
+  background-color: $color6;
+}
+.btn7 {
+  background-color: $color7;
+} 
+.btn8 {
+  background-color: $color8;
+}
+.btn9 {
+  background-color: $color9;
+}
+.btn10 {
+  background-color: $color10;
+} 
+.btn11 {
+  background-color: $color11;
+}
+.btn12 {
+  background-color: $color12;
+}
+.btn13{
+  background-color: $Bk;
+}
+
+// v（純色）、b,p（明清色）、dp,dkg（暗清色）、sf,d(中間色)の7種類に変更
+// 1:v, 2:b, 3:dp, 4:sf, 5:d, 6:p, 7:dkg　の対応関係
+
+//color1
+.v1{
+  background-color:$v1;
+}
+.c-v1{
+  color:$v1;
+  fill:$v1;
+}
+
+.b1{
+  background-color: $b1;
+}
+.c-b1{
+  color: $b1;
+  fill: $b1;
+}
+
+.dp1{
+  background-color:$dp1;
+}
+.c-dp1{
+  color:$dp1;
+  fill:$dp1;
+}
+
+.sf1{
+  background-color:$sf1;
+}
+.c-sf1{
+  fill:$sf1;
+  color:$sf1;
+}
+
+.d1{
+  background-color:$d1;
+}
+.c-d1{
+  fill:$d1;
+  color:$d1;
+}
+
+.p1{
+  background-color:$p1;
+}
+.c-p1{
+  fill:$p1;
+  color:$p1;
+}
+
+.dkg1{
+  background-color:$dkg1;
+}
+.c-dkg1{
+  fill:$dkg1;
+  color:$dkg1;
+}
+
+//color2のtone
+.v2{
+  background-color:$v2;
+}
+.c-v2{
+  fill:$v2;
+  color:$v2;
+}
+
+.b2{
+  background-color: $b2;
+}
+.c-b2{
+  fill: $b2;
+  color: $b2;
+}
+
+.dp2{
+  background-color:$dp2;
+}
+.c-dp2{
+  fill:$dp2;
+  color:$dp2;
+}
+
+.sf2{
+  background-color:$sf2;
+}
+.c-sf2{
+  fill:$sf2;
+  color:$sf2;
+}
+
+.d2{
+  background-color:$d2;
+}
+.c-d2{
+  fill:$d2;
+  color:$d2;
+}
+
+.p2{
+  background-color:$p2;
+}
+.c-p2{
+  fill:$p2;
+  color:$p2;
+}
+
+.dkg2{
+  background-color:$dkg2;
+}
+.c-dkg2{
+  fill:$dkg2;
+  color:$dkg2;
+}
+
+//color3のtone
+.v3{
+  background-color:$v3;
+}
+.c-v3{
+  fill:$v3;
+  color:$v3;
+}
+
+.b3{
+  background-color:$b3;
+}
+.c-b3{
+  fill: $b3;
+  color: $b3;
+}
+
+.dp3{
+  background-color:$dp3;
+}
+.c-dp3{
+  fill:$dp3;
+  color:$dp3;
+}
+
+.sf3{
+  background-color:$sf3;
+}
+.c-sf3{
+  fill:$sf3;
+  color:$sf3;
+}
+
+.d3{
+  background-color:$d3;
+}
+.c-d3{
+  fill:$d3;
+  color:$d3;
+}
+
+.p3{
+  background-color:$p3;
+}
+.c-p3{
+  fill:$p3;
+  color:$p3;
+}
+
+.dkg3{
+  background-color:$dkg3;
+}
+.c-dkg3{
+  fill:$dkg3;
+  color:$dkg3;
+}
+
+// color4のtone
+.v4{
+  background-color:$v4;
+}
+.c-v4{
+  fill:$v4;
+  color:$v4;
+}
+
+.b4{
+  background-color: $b4;
+}
+.c-b4{
+  fill: $b4;
+  color: $b4;
+}
+
+.dp4{
+  background-color:$dp4;
+}
+.c-dp4{
+  fill:$dp4;
+  color:$dp4;
+}
+
+.sf4{
+  background-color:$sf4;
+}
+.c-sf4{
+  fill:$sf4;
+  color:$sf4;
+}
+
+.d4{
+  background-color:$d4;
+}
+.c-d4{
+  fill:$d4;
+  color:$d4;
+}
+
+.p4{
+  background-color:$p4;
+}
+.c-p4{
+  fill:$p4;
+  color:$p4;
+}
+
+.dkg4{
+  background-color:$dkg4;
+}
+.c-dkg4{
+  fill:$dkg4;
+  color:$dkg4;
+}
+
+//color5のtone
+.v5{
+  background-color:$v5;
+}
+.c-v5{
+  fill:$v5;
+  color:$v5;
+}
+
+.b5{
+  background-color: $b5;
+}
+.c-b5{
+  fill: $b5;
+  color: $b5;
+}
+
+.dp5{
+  background-color:$dp5;
+}
+.c-dp5{
+  fill:$dp5;
+  color:$dp5;
+}
+
+.sf5{
+  background-color:$sf5;
+}
+.c-sf5{
+  fill:$sf5;
+  color:$sf5;
+}
+
+.d5{
+  background-color:$d5;
+}
+.c-d5{
+  fill:$d5;
+  color:$d5;
+}
+
+.p5{
+  background-color:$p5;
+}
+.c-p5{
+  fill:$p5;
+  color:$p5;
+}
+
+.dkg5{
+  background-color:$dkg5;
+}
+.c-dkg5{
+  fill:$dkg5;
+  color:$dkg5;
+}
+
+//color6のtone
+.v6{
+  background-color:$v6;
+}
+.c-v6{
+  fill:$v6;
+  color:$v6;
+}
+
+.b6{
+  background-color: $b6;
+}
+.c-b6{
+  fill: $b6;
+  color: $b6;
+}
+
+.dp6{
+  background-color:$dp6;
+}
+.c-dp6{
+  fill:$dp6;
+  color:$dp6;
+}
+
+.sf6{
+  background-color:$sf6;
+}
+.c-sf6{
+  fill:$sf6;
+  color:$sf6;
+}
+
+.d6{
+  background-color:$d6;
+}
+.c-d6{
+  fill:$d6;
+  color:$d6;
+}
+
+.p6{
+  background-color:$p6;
+}
+.c-p6{
+  fill:$p6;
+  color:$p6;
+}
+
+.dkg6{
+  background-color:$dkg6;
+}
+.c-dkg6{
+  fill:$dkg6;
+  color:$dkg6;
+}
+
+//color7のtone
+.v7{
+  background-color:$v7;
+}
+.c-v7{
+  fill:$v7;
+  color:$v7;
+}
+
+.b7{
+  background-color:$b7;
+}
+.c-b7{
+  fill: $b7;
+  color:$b7;
+}
+
+.dp7{
+  background-color:$dp7;
+}
+.c-dp7{
+  fill:$dp7;
+  color:$dp7;
+}
+
+.sf7{
+  background-color:$sf7;
+}
+.c-sf7{
+  fill:$sf7;
+  color:$sf7;
+}
+
+.d7{
+  background-color:$d7;
+}
+.c-d7{
+  fill:$d7;
+  color:$d7;
+}
+
+.p7{
+  background-color:$p7;
+}
+.c-p7{
+  fill:$p7;
+  color:$p7;
+}
+
+.dkg7{
+  background-color:$dkg7;
+}
+.c-dkg7{
+  fill:$dkg7;
+  color:$dkg7;
+}
+
+//color8のtone
+.v8{
+  background-color:$v8;
+}
+.c-v8{
+  fill:$v8;
+  color:$v8;
+}
+
+.b8{
+  background-color:$b8;
+}
+.c-b8{
+  fill: $b8;
+  color: $b8;
+}
+
+.dp8{
+  background-color:$dp8;
+}
+.c-dp8{
+  fill:$dp8;
+  color:$dp8;
+}
+
+.sf8{
+  background-color:$sf8;
+}
+.c-sf8{
+  fill:$sf8;
+  color:$sf8;
+}
+
+.d8{
+  background-color:$d8;
+}
+.c-d8{
+  fill:$d8;
+  color:$d8;
+}
+
+.p8{
+  background-color:$p8;
+}
+.c-p8{
+  fill:$p8;
+  color:$p8;
+}
+
+.dkg8{
+  background-color:$dkg8;
+}
+.c-dkg8{
+  fill:$dkg8;
+  color:$dkg8;
+}
+
+//color9のtone
+.v9{
+  background-color:$v9;
+}
+.c-v9{
+  fill:$v9;
+  color:$v9;
+}
+
+.b9{
+  background-color:$b9;
+}
+.c-b9{
+  fill:$b9;
+  color:$b9;
+}
+
+.dp9{
+  background-color:$dp9;
+}
+.c-dp9{
+  fill:$dp9;
+  color:$dp9;
+}
+
+.sf9{
+  background-color:$sf9;
+}
+.c-sf9{
+  fill:$sf9;
+  color:$sf9;
+}
+
+.d9{
+  background-color:$d9;
+}
+.c-d9{
+  fill:$d9;
+  color:$d9;
+}
+
+.p9{
+  background-color:$p9;
+}
+.c-p9{
+  fill:$p9;
+  color:$p9;
+}
+
+.dkg9{
+  background-color:$dkg9;
+}
+.c-dkg9{
+  fill:$dkg9;
+  color:$dkg9;
+}
+
+//color10のtone
+.v10{
+  background-color:$v10;
+}
+.c-v10{
+  fill:$v10;
+  color:$v10;
+}
+
+.b10{
+  background-color: $b10;
+}
+.c-b10{
+  fill: $b10;
+  color: $b10;
+}
+
+.dp10{
+  background-color:$dp10;
+}
+.c-dp10{
+  fill:$dp10;
+  color:$dp10;
+}
+
+.sf10{
+  background-color:$sf10;
+}
+.c-sf10{
+  fill:$sf10;
+  color:$sf10;
+}
+
+.d10{
+  background-color:$d10;
+}
+.c-d10{
+  fill:$d10;
+  color:$d10;
+}
+
+.p10{
+  background-color:$p10;
+}
+.c-p10{
+  fill:$p10;
+  color:$p10;
+}
+
+.dkg10{
+  background-color:$dkg10;
+}
+.c-dkg10{
+  fill:$dkg10;
+  color:$dkg10;
+}
+
+//color11のtone
+.v11{
+  background-color:$v11;
+}
+.c-v11{
+  fill:$v11;
+  color:$v11;
+}
+
+.b11{
+  background-color:$b11;
+}
+.c-b11{
+  fill: $b11;
+  color: $b11;
+}
+
+.dp11{
+  background-color:$dp11;
+}
+.c-dp11{
+  fill:$dp11;
+  color:$dp11;
+}
+
+.sf11{
+  background-color:$sf11;
+}
+.c-sf11{
+  fill:$sf11;
+  color:$sf11;
+}
+
+.d11{
+  background-color:$d11;
+}
+.c-d11{
+  fill:$d11;
+  color:$d11;
+}
+
+.p11{
+  background-color:$p11;
+}
+.c-p11{
+  fill:$p11;
+  color:$p11;
+}
+
+.dkg11{
+  background-color:$dkg11;
+}
+.c-dkg11{
+  fill:$dkg11;
+  color:$dkg11;
+}
+
+//color12のtone
+.v12{
+  background-color:$v12;
+}
+.c-v12{
+  fill:$v12;
+  color:$v12;
+}
+
+.b12{
+  background-color: $b12;
+}
+.c-b12{
+  fill: $b12;
+  color: $b12;
+}
+
+.dp12{
+  background-color:$dp12;
+}
+.c-dp12{
+  fill:$dp12;
+  color:$dp12;
+}
+
+.sf12{
+  background-color:$sf12;
+}
+.c-sf12{
+  fill:$sf12;
+  color:$sf12;
+}
+
+.d12{
+  background-color:$d12;
+}
+.c-d12{
+  fill:$d12;
+  color:$d12;
+}
+
+.p12{
+  background-color:$p12;
+}
+.c-p12{
+  fill:$p12;
+  color:$p12;
+}
+
+.dkg12{
+  background-color:$dkg12;
+}
+.c-dkg12{
+  fill:$dkg12;
+  color:$dkg12;
+}
+
+/*** margin ***/
+$marginClass: (
+  m: margin,
+  mt: margin-top,
+  mb: margin-bottom,
+  mr: margin-right,
+  ml: margin-left
+);
+@each $key, $value in $marginClass {
+  @for $i from 0 through 300 {
+    .u-#{$key}_#{$i} {
+      #{$value}: #{$i}px !important;
+    }
+  }
+}
+
+.u-mx_20 {
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+}
+
+/*** padding ***/
+$paddingClass: (
+  p: padding,
+  pt: padding-top,
+  pb: padding-bottom,
+  pr: padding-right,
+  pl: padding-left
+);
+@each $key, $value in $paddingClass {
+  @for $i from 0 through 100 {
+    .u-#{$key}_#{$i} {
+      #{$value}: #{$i}px !important;
+    }
+  }
+}
+
+/*** width ***/
+@for $i from 0 through 600 {
+  .u-width_#{$i*5}px {
+    width: #{$i * 5}px;
+  }
+}
+
+.u-width_226px {
+  width: 226px;
+}
+
+.u-width_880px {
+  width: 880px;
+}
+
+.u-width_1440px {
+  width: 1440px;
+}
+
+.u-width_85per {
+  width: 85%;
+}
+
+/*** height ***/
+@for $i from 0 through 500 {
+  .u-height_#{$i}px {
+    height: #{$i}px;
+  }
+}
+
+/*** font ***/
+$fontSizeClass: (
+  fs: font-size,
+);
+@each $key, $value in $fontSizeClass {
+  @for $i from 10 through 40 {
+    .u-#{$key}_#{$i} {
+      #{$value}: #{$i}px;
+    }
+  }
+}
+
+

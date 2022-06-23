@@ -14,15 +14,24 @@ Rails.application.routes.draw do
     get "verify", :to => "users/registrations#verify"
     get "login", :to => "users/sessions#new"
     delete "logout", :to => "users/sessions#destroy"
+
+    get "week", :to => "home#week"
+    for i in 1..8 do
+      get "week/#{i}", :to => "home#week#{i}"
+    end
+    get "home", :to => "home#index"
   end
 
   resource :users, only: [:edit, :update] do
     collection do
       get "mypage", :to => "users#edit"
       put "mypage", :to => "users#update"
+      patch 'mypage/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     end
   end
   get "home" => "home#index"
+  resources :outfits
+  
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
